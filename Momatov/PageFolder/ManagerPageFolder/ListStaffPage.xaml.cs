@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Momatov.WindowFolder.ManagerWindowFolder
+namespace Momatov.PageFolder.ManagerPageFolder
 {
     /// <summary>
     /// Логика взаимодействия для ListStaffPage.xaml

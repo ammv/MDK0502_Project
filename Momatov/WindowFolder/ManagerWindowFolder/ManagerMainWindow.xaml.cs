@@ -16,7 +16,7 @@ using Microsoft.Win32;
 using Momatov.ClassFolder;
 using Momatov.ClassFolder.DataFolder;
 
-namespace Momatov.PageFolder.ManagerPageFolder
+namespace Momatov.WindowFolder.ManagerWindowFolder
 {
     /// <summary>
     /// Логика взаимодействия для ManagerMainWindow.xaml
@@ -27,9 +27,9 @@ namespace Momatov.PageFolder.ManagerPageFolder
         {
             InitializeComponent();
             string base64String = DBEntities.GetContext().Staff.First(x => x.UserID == App.CurrentUser.ID).Photo;
-            if(base64String != null)
+            if(!string.IsNullOrEmpty(base64String))
             {
-                 StaffPhoto.Source = ImageClass.ConvertBase64ToBitmapImage(base64String);
+                 StaffPhoto.Source = ImageClass.ConvertBase64StringToBitmapImage(base64String);
             }
             
         }
@@ -52,7 +52,15 @@ namespace Momatov.PageFolder.ManagerPageFolder
 
                 DBEntities.GetContext().SaveChanges();
 
-                StaffPhoto.Source = ImageClass.ConvertBase64ToBitmapImage(base64String);
+                StaffPhoto.Source = ImageClass.ConvertBase64StringToBitmapImage(base64String);
+            }
+        }
+
+        private void Border_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                DragMove();
             }
         }
     }

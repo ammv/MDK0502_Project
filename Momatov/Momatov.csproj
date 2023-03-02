@@ -123,10 +123,10 @@
     <Compile Include="WindowFolder\Authorization.xaml.cs">
       <DependentUpon>Authorization.xaml</DependentUpon>
     </Compile>
-    <Compile Include="WindowFolder\ManagerWindowFolder\ListStaffPage.xaml.cs">
+    <Compile Include="PageFolder\ManagerPageFolder\ListStaffPage.xaml.cs">
       <DependentUpon>ListStaffPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PageFolder\ManagerPageFolder\ManagerMainWindow.xaml.cs">
+    <Compile Include="WindowFolder\ManagerWindowFolder\ManagerMainWindow.xaml.cs">
       <DependentUpon>ManagerMainWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="WindowFolder\Registration.xaml.cs">
@@ -208,11 +208,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="WindowFolder\ManagerWindowFolder\ListStaffPage.xaml">
+    <Page Include="PageFolder\ManagerPageFolder\ListStaffPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="PageFolder\ManagerPageFolder\ManagerMainWindow.xaml">
+    <Page Include="WindowFolder\ManagerWindowFolder\ManagerMainWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

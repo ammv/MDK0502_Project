@@ -190,7 +190,17 @@
     </Style>
     
     <!--ListBox style-->
-    <Style TargetType="ListBox">
+    <Style TargetType="ListBox" BasedOn="{StaticResource FontBase}">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderBrush" Value="{StaticResource BorderColor}"/>
+        <Setter Property="Margin" Value="10"/>
+        <Setter Property="FontSize" Value="14"/>
+
+        <Style.Resources>
+            <Style TargetType="Border">
+                <Setter Property="CornerRadius" Value="{StaticResource CornerRadius}" />
+            </Style>
+        </Style.Resources>
         
     </Style>
 

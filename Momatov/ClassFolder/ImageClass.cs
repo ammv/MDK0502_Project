@@ -13,9 +13,9 @@ namespace Momatov.ClassFolder
 {
     class ImageClass
     {
-        public static BitmapImage ConvertBase64ToBitmapImage(string base64String)
+        public static BitmapImage ConvertBase64StringToBitmapImage(string base64string)
         {
-            byte[] byteBuffer = Convert.FromBase64String(base64String);
+            byte[] byteBuffer = Convert.FromBase64String(base64string);
             using (var ms = new MemoryStream(byteBuffer, 0, byteBuffer.Length))
             {
                 var image = new BitmapImage();
@@ -31,18 +31,7 @@ namespace Momatov.ClassFolder
 
         public static string ConvertImageToBase64String(string filePath)
         {
-            using (Image image = Image.FromFile(filePath))
-            {
-                using (MemoryStream m = new MemoryStream())
-                {
-                    image.Save(m, image.RawFormat);
-                    byte[] imageBytes = m.ToArray();
-
-                    // Convert byte[] to Base64 String
-                    string base64String = Convert.ToBase64String(imageBytes);
-                    return base64String;
-                }
-            }
+            return Convert.ToBase64String(File.ReadAllBytes(filePath));
         }
     }
 }
