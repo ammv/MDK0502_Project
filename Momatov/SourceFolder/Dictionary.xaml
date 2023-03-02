@@ -1,0 +1,198 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+
+    <SolidColorBrush x:Key="ForegroundColor" Color="#6eb5ff"/>
+    <SolidColorBrush x:Key="BackgroundColor" Color="#c4faf8"/>
+    <SolidColorBrush x:Key="BorderColor" Color="#85e3ff"/>
+    <CornerRadius x:Key="CornerRadius">4</CornerRadius>
+
+    <Style x:Key="FontBase" TargetType="Control">
+        <Setter Property="FontFamily" Value="Centaur"/>
+    </Style>
+
+    <Style x:Key="HeaderLabel" 
+           BasedOn="{StaticResource FontBase}" TargetType="Label">
+        <Setter Property="FontSize" Value="22"/>
+        <Setter Property="Foreground" 
+                Value="{StaticResource ForegroundColor}"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
+    </Style>
+
+    <Style x:Key="BodyTextBlock" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="Centaur"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="Foreground" 
+                Value="{StaticResource ForegroundColor}"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+
+    <Style x:Key="BodyTextBox"
+           BasedOn="{StaticResource FontBase}" TargetType="TextBox">
+        <Setter Property="BorderBrush" 
+                Value="{StaticResource BorderColor}"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="Margin" Value="10"/>
+        <Setter Property="Foreground"
+                Value="{DynamicResource ForegroundColor}"/>
+        <Setter Property="Background"
+                Value="Transparent"/>
+        <Style.Resources>
+            <Style TargetType="Border">
+                <Setter Property="CornerRadius" Value="{StaticResource CornerRadius}" />
+            </Style>
+        </Style.Resources>
+        <!--<Setter Property="BorderThickness" Value="2"/>-->
+    </Style>
+
+    <Style x:Key="Body2TextBox" 
+           BasedOn="{StaticResource BodyTextBox}" TargetType="TextBox">
+        <Setter Property="FontSize" Value="18"/>
+    </Style>
+
+    <Style x:Key="BodyPasswordBox" 
+           BasedOn="{StaticResource FontBase}" 
+           TargetType="PasswordBox">
+        <Setter Property="Margin" Value="10"/>
+        <Setter Property="BorderBrush" 
+                Value="{StaticResource BorderColor}"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="Foreground" Value="#6eb5ff"/>
+        <Setter Property="Background"
+                Value="Transparent"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type PasswordBox}">
+                    <Border Background="{TemplateBinding Background}" 
+                    x:Name="Bd" BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{StaticResource CornerRadius}">
+                    <ScrollViewer Name="PART_ContentHost" SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Resources>
+            <Style TargetType="Border">
+                <Setter Property="CornerRadius" Value="{StaticResource CornerRadius}" />
+            </Style>
+        </Style.Resources>
+        <!--<Setter Property="BorderThickness" Value="2"/>-->
+    </Style>
+
+    <Style x:Key="BodyButton" 
+           BasedOn="{StaticResource FontBase}" TargetType="Button">
+        <Setter Property="Margin" Value="10"/>
+        <Setter Property="BorderBrush" 
+                Value="{StaticResource BorderColor}"/>
+        <Setter Property="Foreground" 
+                Value="{StaticResource ForegroundColor}"/>
+        <Setter Property="Background" 
+                Value="{StaticResource BackgroundColor}"/>
+        <Setter Property="FontSize" 
+                Value="14"/>
+        <Style.Resources>
+            <Style TargetType="Border">
+                <Setter Property="CornerRadius" Value="{StaticResource CornerRadius}" />
+            </Style>
+        </Style.Resources>
+        <!--<Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>-->
+        <!--<Setter Property="BorderThickness" Value="2"/>-->
+    </Style>
+
+    <Style TargetType="ComboBox">
+        <Setter Property="Margin" Value="10"/>
+        <Setter Property="BorderBrush" 
+                Value="{StaticResource BorderColor}"/>
+        <Setter Property="VerticalContentAlignment"
+                Value="Center"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="Foreground" 
+                Value="{DynamicResource ForegroundColor}"/>
+        <Setter Property="Background"
+                Value="Transparent"/>
+        <Style.Resources>
+            <Style TargetType="Border">
+                <Setter Property="CornerRadius" Value="{StaticResource CornerRadius}" />
+            </Style>
+        </Style.Resources>
+    </Style>
+
+    <Style TargetType="DataGrid" 
+           BasedOn="{StaticResource FontBase}">
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="BorderBrush" 
+                Value="{StaticResource BorderColor}"/>
+        <Setter Property="HorizontalContentAlignment" 
+                Value="Left"/>
+        <Setter Property="VerticalContentAlignment" 
+                Value="Center"/>
+        <Setter Property="Margin" 
+                Value="10"/>
+        <Setter Property="Foreground" 
+                Value="{StaticResource ForegroundColor}"/>
+        <Setter Property="Background" 
+                Value="Transparent"/>
+        <Setter Property="VerticalGridLinesBrush" 
+                Value="{StaticResource BorderColor}"/>
+        <Setter Property="HorizontalGridLinesBrush" 
+                Value="{StaticResource BorderColor}"/>
+        <Setter Property="HeadersVisibility" 
+                Value="Column"/>
+
+    </Style>
+
+    <Style TargetType="DataGridColumnHeader" 
+           BasedOn="{StaticResource FontBase}">
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="HorizontalContentAlignment" 
+                Value="Center"/>
+        <Setter Property="VerticalContentAlignment" 
+                Value="Center"/>
+        <Setter Property="Background" 
+                Value="Transparent"/>
+        <Setter Property="Foreground" 
+                Value="{StaticResource ForegroundColor}"/>
+        <Setter Property="BorderThickness" Value="0,0,1,0"/>
+        <Setter Property="BorderBrush" Value="{StaticResource BorderColor}"/>
+    </Style>
+
+    <Style TargetType="DataGridRow" 
+           BasedOn="{StaticResource FontBase}">
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="BorderBrush" 
+                Value="{StaticResource BorderColor}"/>
+        <Setter Property="Background" Value="Transparent"/>
+        
+        <Setter Property="HorizontalContentAlignment" 
+                Value="Center"/>
+        <Setter Property="VerticalContentAlignment" 
+                Value="Center"/>
+        <Setter Property="Foreground" 
+                Value="{StaticResource ForegroundColor}"/>
+    </Style>
+
+    <Style x:Key="LogoSmall" TargetType="Image">
+        <Setter Property="Height" Value="100"/>
+    </Style>
+    
+    <!--Border style-->
+    <Style x:Key="BorderBackground" TargetType="Border">
+        <Setter Property="Background"
+                Value="{StaticResource BackgroundColor}"/>
+        <Setter Property="CornerRadius" Value="10"/>
+    </Style>
+    
+    <!--ListBox style-->
+    <Style TargetType="ListBox">
+        
+    </Style>
+
+
+</ResourceDictionary>

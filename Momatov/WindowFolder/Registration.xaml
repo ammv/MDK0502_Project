@@ -1,0 +1,66 @@
+﻿<Window x:Class="Momatov.WindowFolder.Registration"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Momatov.WindowFolder"
+        mc:Ignorable="d"
+        Title="Регистрация" Height="450" Width="500"
+        WindowStartupLocation="CenterScreen"
+        Background="{DynamicResource BackgroundColor}">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="75"/>
+            <RowDefinition Height="75"/>
+            <RowDefinition Height="75"/>
+            <RowDefinition Height="75"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="175"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Image Source="../SourceFolder/logo.png"
+               Style="{DynamicResource LogoSmall}"
+               Grid.Row="0" Grid.Column="0"/>
+
+        <Label Content="Регистрация" Style="{DynamicResource HeaderLabel}"
+               Grid.Row="0" Grid.Column="1"
+               VerticalAlignment="Center"
+               HorizontalAlignment="Center"/>
+
+        <TextBlock Text="Логин" Style="{DynamicResource BodyTextBlock}"
+                   Grid.Row="1" Grid.Column="0"/>
+        
+        <TextBlock Text="Пароль" Style="{DynamicResource BodyTextBlock}"
+                   Grid.Row="2" Grid.Column="0"/>
+
+        <TextBlock Text="Повторите пароль" Style="{DynamicResource BodyTextBlock}"
+                   Grid.Row="3" Grid.Column="0"/>
+
+        <TextBox x:Name="LoginTextBox" Style="{DynamicResource BodyTextBox}"
+                 Grid.Row="1" Grid.Column="1"
+                 Height="35"/>
+
+        <PasswordBox x:Name="PasswordPasswordBox" Style="{DynamicResource BodyPasswordBox}"
+                 Grid.Row="2" Grid.Column="1"
+                 Height="35"/>
+
+        <PasswordBox x:Name="RepeatPasswordPasswordBox" Style="{DynamicResource BodyPasswordBox}"
+                 Grid.Row="3" Grid.Column="1"
+                 Height="35"/>
+
+        <Button x:Name="BackButton" Content="Назад" Style="{DynamicResource BodyButton}"
+                Grid.Row="4" Grid.Column="0"
+                Height="35"
+                Click="BackButton_Click"/>
+
+        <Button x:Name="RegistrationButton" Content="Зарегистрироваться" Style="{DynamicResource BodyButton}"
+                Grid.Row="5" Grid.Column="1"
+                Height="35"
+                Click="RegistrationButton_Click"/>
+
+    </Grid>
+</Window>

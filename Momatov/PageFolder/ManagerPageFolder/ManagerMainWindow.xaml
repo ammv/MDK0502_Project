@@ -1,0 +1,86 @@
+﻿<Window x:Class="Momatov.PageFolder.ManagerPageFolder.ManagerMainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Momatov.WindowFolder.ManagerWindowFolder"
+        mc:Ignorable="d"
+        Height="750" Width="1200"
+        MaxHeight="750" MaxWidth="1200"
+        MinHeight="750" MinWidth="1200"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        Background="Transparent"
+        AllowsTransparency="True"
+        ResizeMode="CanResizeWithGrip">
+    <Border Style="{DynamicResource BorderBackground}"
+            >
+        <Grid Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Image x:Name="CloseImage"
+                   Margin="20"
+                   Width="15" Height="15"
+                   HorizontalAlignment="Right"
+                   Source="/Momatov;component/SourceFolder/Close.png"
+                   />
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="300"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <!--For logo-->
+                        <RowDefinition Height="100"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Image Source="pack://application:,,,/SourceFolder/logo.png"
+                           Style="{DynamicResource LogoSmall}"/>
+                    <StackPanel Grid.Row="1">
+                        <Button x:Name="ListUserButton"
+                                Style="{DynamicResource BodyButton}"
+                                Content="Список пользователей"
+                                Margin="10"
+                                Height="50"/>
+                        <Button x:Name="ChangeStaffImageButton"
+                                Style="{DynamicResource BodyButton}"
+                                Content="Изменить изображение"
+                                Click="ChangeStaffImageButton_Click"
+                                Margin="10"
+                                Height="50"/>
+                    </StackPanel>
+                    <Button x:Name="BackButton"
+                                Style="{DynamicResource BodyButton}"
+                                Content="Назад"
+                                Grid.Row="1"
+                                VerticalAlignment="Bottom"
+                                Margin="10"
+                                Height="50"/>
+
+                </Grid>
+                <Grid Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="70"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Label Style="{DynamicResource HeaderLabel}"
+                           Content="{Binding ElementName=MainFrame,
+                        Path=Content.Title}"/>
+                    <Image x:Name="StaffPhoto"
+                           Grid.Row="1"/>
+                    <!--<Frame x:Name="MainFrame"
+                           Grid.Row="1"
+                           NavigationUIVisibility="Hidden">-->
+
+                    <!--</Frame>-->
+
+
+                </Grid>
+            </Grid>
+        </Grid>
+    </Border>
+
+</Window>
