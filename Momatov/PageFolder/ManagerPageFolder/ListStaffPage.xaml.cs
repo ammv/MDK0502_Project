@@ -1,5 +1,8 @@
-﻿using System;
+﻿using Momatov.ClassFolder;
+using Momatov.ClassFolder.DataFolder;
+using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +26,26 @@ namespace Momatov.PageFolder.ManagerPageFolder
         public ListStaffPage()
         {
             InitializeComponent();
+            ListStaffListBox.ItemsSource = DBEntities.GetContext()
+                .Staff.ToList().OrderBy(s => s.LastName);
+        }
+
+        private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+    }
+
+    public class StringToBitmapImageConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return ImageClass.ConvertBase64StringToBitmapImage((string)value);
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
         }
     }
 }

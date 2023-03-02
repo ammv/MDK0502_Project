@@ -3,10 +3,13 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:Momatov.WindowFolder.ManagerWindowFolder"
+      xmlns:local="clr-namespace:Momatov.PageFolder.ManagerPageFolder"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="ListStaffPage">
+    <Page.Resources>
+        <local:StringToBitmapImageConverter x:Key="stringToBitmapImageConverter"/>
+    </Page.Resources>
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -23,7 +26,8 @@
         <TextBox x:Name="SearchTextBox"
                  Grid.Column="1"
                  Style="{DynamicResource Body2TextBox}"
-                 Width="Auto"/>
+                 Width="Auto"
+                 TextChanged="SearchTextBox_TextChanged"/>
 
         <ListBox Grid.Row="1"
                  Grid.ColumnSpan="2"
@@ -45,7 +49,7 @@
                         </Grid.RowDefinitions>
 
                         <Image Grid.RowSpan="4"
-                               Source="{Binding Photo}"/>
+                               Source="{Binding Photo, Converter={StaticResource stringToBitmapImageConverter}}"/>
                         <TextBlock Grid.Column="1">
                             <Run Text="Фамилия: "
                                  FontWeight="Bold"/>
@@ -77,12 +81,6 @@
                         <TextBlock Grid.Column="2">
                             <Run Text="Логин: "
                                  FontWeight="Bold"/>
-                            <Run Text="{Binding Login}"/>
-                        </TextBlock>
-
-                        <TextBlock Grid.Column="2">
-                            <Run Text="Логин: "
-                                 FontWeight="Bold"/>
                             <Run Text="{Binding User.Login}"/>
                         </TextBlock>
 
@@ -91,6 +89,13 @@
                             <Run Text="Пароль: "
                                  FontWeight="Bold"/>
                             <Run Text="{Binding User.Password}"/>
+                        </TextBlock>
+
+                        <TextBlock Grid.Row="2"
+                                   Grid.Column="2">
+                            <Run Text="Роль: "
+                                 FontWeight="Bold"/>
+                            <Run Text="{Binding User.UserRole.Name}"/>
                         </TextBlock>
                     </Grid>
                 </DataTemplate>
