@@ -1,4 +1,5 @@
-﻿using Momatov.ClassFolder.DataFolder;
+﻿using Momatov.ClassFolder;
+using Momatov.ClassFolder.DataFolder;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -31,61 +32,126 @@ namespace Momatov
             set { currentUser = value; }
         }
 
-        public static string GenerateName(int len)
+        public static string GenerateFirstName()
         {
             Random r = new Random();
-            string[] consonants = { "b", "c", "d", "f", "g", "h", "j", "k", "l", "m", "l", "n", "p", "q", "r", "s", "sh", "zh", "t", "v", "w", "x" };
-            string[] vowels = { "a", "e", "i", "o", "u", "ae", "y" };
-            string Name = "";
-            Name += consonants[r.Next(consonants.Length)].ToUpper();
-            Name += vowels[r.Next(vowels.Length)];
-            int b = 2; //b tells how many times a new letter has been added. It's 2 right now because the first two letters are already in the name.
-            while (b < len)
-            {
-                Name += consonants[r.Next(consonants.Length)];
-                b++;
-                Name += vowels[r.Next(vowels.Length)];
-                b++;
-            }
+            string[] names = {"Олег", "Артем", "Глеб", "Мурад", "Евгений", "Андрей"};
 
-            return Name;
-
-
+            return names[r.Next(names.Length)];
         }
 
-        //public List<User> GenerateRandomUser(int startID)
-        //{
-        //    List<User> users = new List<User>();
-        //    Random rnd = new Random();
-        //    for (int i = 0; i < 50; i++)
-        //    {
-        //        User user = new User
-        //        {
-        //            ID = startID+i,
-        //            Login = GenerateName(rnd.Next(5, 12)),
-        //            Password = Guid.NewGuid().ToString("d").Substring(1, 8),
-        //            RoleID = rnd.Next(1, 2)
-        //        };
-        //        User.Add(user);
-        //        //users.Add(new string[]{ GenerateName (rnd.Next(5, 12)), Guid.NewGuid().ToString("d").Substring(1, 8)});
-        //    }
-        //    return users;
-        //}
+        public static string GenerateMiddleName()
+        {
+            Random r = new Random();
+            string[] names = { "Моматов", "Отводов", "Иванов", "Петров", "Лаврушев", "Медведев" };
+
+            return names[r.Next(names.Length)];
+        }
+
+        public static string GenerateLastName()
+        {
+            Random r = new Random();
+            string[] names = { "Дмитриевич", "Петрович", "Арестович", "Георгиевич", "Андреевич", "Михаилович" };
+
+            return names[r.Next(0, names.Length)];
+        }
+
+        public static string GeneratePhone()
+        {
+            Random r = new Random();
+            return r.Next(89000, 89999).ToString() + r.Next(100000, 999999).ToString();
+        }
+
+        public static string GeneratePhoto()
+        {
+            Random r = new Random();
+            string[] names = { 
+                @"C:\Users\Моматов\Downloads\1.jpg",
+                @"C:\Users\Моматов\Downloads\2.jpg",
+                @"C:\Users\Моматов\Downloads\3.jpg",
+                @"C:\Users\Моматов\Downloads\4.jpg",
+                @"C:\Users\Моматов\Downloads\5.jpg"};
+
+            return ImageClass.ConvertImageToBase64String(names[r.Next(0, names.Length)]);
+        }
+
+        public List<User> GenerateRandomUser(int startID)
+        {
+            List<User> users = new List<User>();
+            Random rnd = new Random();
+            for (int i = 0; i < 50; i++)
+            {
+                try
+                {
+                    User user = new User
+                    {
+                        Login = Guid.NewGuid().ToString("d").Substring(1, 8),
+                        Password = Guid.NewGuid().ToString("d").Substring(1, 8),
+                        RoleID = rnd.Next(1, 2)
+                    };
+                    users.Add(user);
+                }
+                catch
+                {
+
+                }
+                
+            }
+            return users;
+        }
+
+        public List<Staff> GenerateRandomStaff()
+        {
+            List<Staff> staffs = new List<Staff>();
+            Random rnd = new Random();
+            for (int i = 0; i < 50; i++)
+            {
+                try
+                {
+                    User user = new User
+                    {
+                        Login = Guid.NewGuid().ToString("d").Substring(1, 8),
+                        Password = Guid.NewGuid().ToString("d").Substring(1, 8),
+                        RoleID = rnd.Next(1, 3)
+                    };
+
+                    DBEntities.GetContext().User.Add(user);
+                    DBEntities.GetContext().SaveChanges();
+
+                    Staff staff = new Staff
+                    {
+                        FirstName = GenerateFirstName(),
+                        MiddleName = GenerateMiddleName(),
+                        LastName = GenerateLastName(),
+                        UserID = user.ID,
+                        Phone = GeneratePhone(),
+                        Photo = GeneratePhoto()
+                    };
+                    staffs.Add(staff);
+                }
+                catch
+                {
+
+                }
+
+            }
+            return staffs;
+        }
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-//            SqlConnection conn = new SqlConnection(App.ConnectionString);
-//            conn.Open();
-//            SqlCommand cmd = new SqlCommand("SELECT IDENT_CURRENT('dbo.Users')", conn);
-//            int startID = (int)cmd.ExecuteScalar();
+            //            SqlConnection conn = new SqlConnection(App.ConnectionString);
+            //            conn.Open();
+            //            SqlCommand cmd = new SqlCommand("SELECT IDENT_CURRENT('dbo.Users')", conn);
+            //            int startID = (int)cmd.ExecuteScalar();
 
-//            var context = DBEntities.GetContext();
-//            foreach (var user in GenerateRandomUsers(startID))
-//{
-//                context.Users.Add(user);
-//                DBEntities.GetContext().SaveChanges();
-//            }
-            //DBEntities.GetContext().SaveChanges();
+            //var context = DBEntities.GetContext();
+            //foreach (var staff in GenerateRandomStaff())
+            //{
+            //    context.Staff.Add(staff);
+            //    DBEntities.GetContext().SaveChanges();
+            //}
+
 
         }
     }

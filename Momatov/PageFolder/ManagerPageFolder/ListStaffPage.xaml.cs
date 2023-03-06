@@ -30,9 +30,44 @@ namespace Momatov.PageFolder.ManagerPageFolder
                 .Staff.ToList().OrderBy(s => s.LastName);
         }
 
-        private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        async private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
+            try
+            {
+                string sr = SearchTextBox.Text.ToLower();
 
+                await Task.Run(() =>
+                {
+                    ListStaffListBox.Dispatcher.Invoke(() =>
+                    {
+                        if (!string.IsNullOrEmpty(sr))
+                        {
+                            ListStaffListBox.ItemsSource = DBEntities.GetContext()
+                            .Staff.Where(s => sr.StartsWith(s.FirstName) ||
+                                sr.StartsWith(s.MiddleName) ||
+                                sr.StartsWith(s.LastName) ||
+                                sr.StartsWith(s.Phone))
+                            .ToList()
+                            .OrderBy(s => s.LastName);
+                        }
+                        else
+                        {
+                            ListStaffListBox.ItemsSource = DBEntities.GetContext()
+                                .Staff.ToList().OrderBy(s => s.LastName);
+                        }
+                    });
+                    
+                });
+
+                
+
+                
+                
+            }
+            catch(Exception ex)
+            {
+                MBClass.Error(ex);
+            }
         }
     }
 
@@ -40,6 +75,8 @@ namespace Momatov.PageFolder.ManagerPageFolder
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
+            string s = (string)value;
+            if(string.IsNullOrEmpty(s)) return null;
             return ImageClass.ConvertBase64StringToBitmapImage((string)value);
         }
 
