@@ -45,7 +45,7 @@ namespace Momatov.PageFolder.ManagerPageFolder
             }
             catch(Exception ex)
             {
-                MBClass.Error(ex)
+                MBClass.Error(ex);
             }
         }
 
