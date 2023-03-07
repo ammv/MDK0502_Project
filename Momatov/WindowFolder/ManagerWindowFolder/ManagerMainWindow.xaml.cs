@@ -47,5 +47,10 @@ namespace Momatov.WindowFolder.ManagerWindowFolder
         {
             MainFrame.Navigate(new ListStaffPage());
         }
+
+        private void AddStaffButton_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Navigate(new AddStaffPage());
+        }
     }
 }
