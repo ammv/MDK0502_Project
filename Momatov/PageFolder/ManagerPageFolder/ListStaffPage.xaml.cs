@@ -30,39 +30,53 @@ namespace Momatov.PageFolder.ManagerPageFolder
                 .Staff.ToList().OrderBy(s => s.LastName);
         }
 
-        async private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        private IOrderedEnumerable<Staff> SearchStaff(string text)
+        {
+            return DBEntities.GetContext()
+                        .Staff.Where(s => s.FirstName.ToLower().StartsWith(text) ||
+                            s.MiddleName.ToLower().StartsWith(text) ||
+                            s.LastName.ToLower().StartsWith(text) ||
+                            s.Phone.StartsWith(text))
+                        .ToList()
+                        .OrderBy(s => s.LastName);
+        }
+
+        private async Task<IOrderedEnumerable<Staff>> SearchStaffAsync(string text)
+        {
+            return await Task.Run(() => SearchStaff(text));
+        }
+
+        //private IEnumerable<Staff> ParallelSearchStaff(string text)
+        //{
+        //    List<Staff> staff = new List<Staff>();
+        //    Parallel.ForEach(DBEntities.GetContext().Staff, s => 
+        //        { 
+        //            if(s.FirstName.StartsWith(text, StringComparison.OrdinalIgnoreCase) ||
+        //                s.MiddleName.StartsWith(text, StringComparison.OrdinalIgnoreCase) ||
+        //                s.LastName.StartsWith(text, StringComparison.OrdinalIgnoreCase) ||
+        //                s.Phone.StartsWith(text))
+        //            {
+        //                staff.Add(s);
+        //            }
+        //        });
+        //    return staff.OrderBy(s => s.LastName);
+        //}
+
+        private async void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             try
             {
-                string sr = SearchTextBox.Text.ToLower();
+                string sr = SearchTextBox.Text.ToLower().Trim();
 
-                await Task.Run(() =>
+                if (!string.IsNullOrEmpty(sr))
                 {
-                    ListStaffListBox.Dispatcher.Invoke(() =>
-                    {
-                        if (!string.IsNullOrEmpty(sr))
-                        {
-                            ListStaffListBox.ItemsSource = DBEntities.GetContext()
-                            .Staff.Where(s => sr.StartsWith(s.FirstName) ||
-                                sr.StartsWith(s.MiddleName) ||
-                                sr.StartsWith(s.LastName) ||
-                                sr.StartsWith(s.Phone))
-                            .ToList()
-                            .OrderBy(s => s.LastName);
-                        }
-                        else
-                        {
-                            ListStaffListBox.ItemsSource = DBEntities.GetContext()
-                                .Staff.ToList().OrderBy(s => s.LastName);
-                        }
-                    });
-                    
-                });
-
-                
-
-                
-                
+                    ListStaffListBox.ItemsSource = await SearchStaffAsync(sr);
+                }
+                else
+                {
+                    ListStaffListBox.ItemsSource = await Task.Run(() => DBEntities.GetContext()
+                        .Staff.ToList().OrderBy(s => s.LastName));
+                }
             }
             catch(Exception ex)
             {

@@ -46,6 +46,12 @@
                                 Margin="10"
                                 Height="50"
                                 Click="ListStaffButton_Click"/>
+                        <Button x:Name="AddStaffButton"
+                                Style="{DynamicResource BodyButton}"
+                                Content="Добавить сотрудника"
+                                Margin="10"
+                                Height="50"
+                                Click="AddStaffButton_Click"/>
                     </StackPanel>
                     <Button x:Name="BackButton"
                                 Style="{DynamicResource BodyButton}"
