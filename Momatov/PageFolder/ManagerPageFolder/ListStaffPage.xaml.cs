@@ -44,43 +44,33 @@ namespace Momatov.PageFolder.ManagerPageFolder
             return await Task.Run(() => SearchStaff(text));
         }
 
-        //private IEnumerable<Staff> ParallelSearchStaff(string text)
-        //{
-        //    List<Staff> staff = new List<Staff>();
-        //    Parallel.ForEach(DBEntities.GetContext().Staff, s => 
-        //        { 
-        //            if(s.FirstName.StartsWith(text, StringComparison.OrdinalIgnoreCase) ||
-        //                s.MiddleName.StartsWith(text, StringComparison.OrdinalIgnoreCase) ||
-        //                s.LastName.StartsWith(text, StringComparison.OrdinalIgnoreCase) ||
-        //                s.Phone.StartsWith(text))
-        //            {
-        //                staff.Add(s);
-        //            }
-        //        });
-        //    return staff.OrderBy(s => s.LastName);
-        //}
-
-        private async void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            try
-            {
-                string sr = SearchTextBox.Text.ToLower().Trim();
-
-                Title = "Поиск сотрудников...";
-
-                IOrderedEnumerable<Staff> result;
-
-                if (!string.IsNullOrEmpty(sr))
+                await Task.Run(() =>
                 {
-                    result = await SearchStaffAsync(sr); 
-                }
-                else
-                {
-                    result = await GetFullStaffListAsync();
-                }
+                    ListStaffListBox.Dispatcher.Invoke(() =>
+                    {
+                        if (!string.IsNullOrEmpty(sr))
+                        {
+                            ListStaffListBox.ItemsSource = DBEntities.GetContext()
+                            .Staff.Where(s => sr.StartsWith(s.FirstName) ||
+                                sr.StartsWith(s.MiddleName) ||
+                                sr.StartsWith(s.LastName) ||
+                                sr.StartsWith(s.Phone))
+                            .ToList()
+                            .OrderBy(s => s.LastName);
+                        }
+                        else
+                        {
+                            ListStaffListBox.ItemsSource = DBEntities.GetContext()
+                                .Staff.ToList().OrderBy(s => s.LastName);
+                        }
+                    });
+                    
+                });
 
-                ListStaffListBox.ItemsSource = result;
-                Title = $"Список сотрудников\nНайдено: {result.Count()}";
+                
+
+                
+                
             }
             catch(Exception ex)
             {
