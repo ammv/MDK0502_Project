@@ -45,18 +45,38 @@ namespace Momatov.PageFolder.ManagerPageFolder
             }
             catch(Exception ex)
             {
-                MBClass.Error(ex)
+                MBClass.Error(ex);
             }
         }
 
         private void AddUser()
         {
-            throw new NotImplementedException();
+            user.Login = LoginTextBox.Text;
+            user.Password = PasswordTextBox.Text;
+            user.RoleID = RoleComboBox.SelectedIndex+1;
         }
 
         private bool ValidateStaff()
         {
-            throw new NotImplementedException();
+            if (string.IsNullOrEmpty(FirstNameTextBox.Text))
+            {
+                MBClass.Error("Вы не ввели имя!");
+                FirstNameTextBox.Focus();
+                return false;
+            }
+            if (string.IsNullOrEmpty(MiddleNameTextBox.Text))
+            {
+                MBClass.Error("Вы не ввели фамилию!");
+                PasswordTextBox.Focus();
+                return false;
+            }
+            if (string.IsNullOrEmpty(PhoneTextBox.Text))
+            {
+                MBClass.Error("Вы не ввели телефон!");
+                PasswordTextBox.Focus();
+                return false;
+            }
+            return true;
         }
 
         private void AddStaff()
@@ -76,6 +96,12 @@ namespace Momatov.PageFolder.ManagerPageFolder
             {
                 MBClass.Error("Вы не ввели пароль!");
                 PasswordTextBox.Focus();
+                return false;
+            }
+            if(DBEntities.GetContext().User.FirstOrDefault(x => x.Login == LoginTextBox.Text) != null)
+            {
+                MBClass.Error("Такой логин уже занят!");
+                LoginTextBox.Focus();
                 return false;
             }
             if(RoleComboBox.SelectedIndex == -1)

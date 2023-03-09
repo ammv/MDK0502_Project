@@ -6,6 +6,7 @@
       xmlns:local="clr-namespace:Momatov.PageFolder.ManagerPageFolder"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
+      Loaded="Page_Loaded"
       Title="ListStaffPage">
     <Page.Resources>
         <local:StringToBitmapImageConverter x:Key="stringToBitmapImageConverter"/>

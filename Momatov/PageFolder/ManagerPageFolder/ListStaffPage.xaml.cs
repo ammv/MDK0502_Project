@@ -26,8 +26,6 @@ namespace Momatov.PageFolder.ManagerPageFolder
         public ListStaffPage()
         {
             InitializeComponent();
-            ListStaffListBox.ItemsSource = DBEntities.GetContext()
-                .Staff.ToList().OrderBy(s => s.LastName);
         }
 
         private IOrderedEnumerable<Staff> SearchStaff(string text)
@@ -68,20 +66,40 @@ namespace Momatov.PageFolder.ManagerPageFolder
             {
                 string sr = SearchTextBox.Text.ToLower().Trim();
 
+                Title = "Поиск сотрудника...";
+                IOrderedEnumerable<Staff> result;
+
                 if (!string.IsNullOrEmpty(sr))
                 {
-                    ListStaffListBox.ItemsSource = await SearchStaffAsync(sr);
+                    result = await SearchStaffAsync(sr);
+                    
                 }
                 else
                 {
-                    ListStaffListBox.ItemsSource = await Task.Run(() => DBEntities.GetContext()
-                        .Staff.ToList().OrderBy(s => s.LastName));
+                    result = await GetStaffListAsync();
                 }
+
+                Title = $"Список сотрудников\nНайдено: {result.Count()}";
+                ListStaffListBox.ItemsSource = result;
             }
             catch(Exception ex)
             {
                 MBClass.Error(ex);
             }
+        }
+
+        private async Task<IOrderedEnumerable<Staff>> GetStaffListAsync()
+        {
+            return await Task.Run(() => DBEntities.GetContext()
+                        .Staff.ToList().OrderBy(s => s.LastName));
+        }
+
+        private async void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            Title = "Загрузка списка сотрудников...";
+            var result = await GetStaffListAsync();
+            ListStaffListBox.ItemsSource = result;
+            Title = $"Список сотрудников\nНайдено: {result.Count()}";
         }
     }
 
