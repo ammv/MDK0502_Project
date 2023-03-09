@@ -38,7 +38,7 @@
         <TextBox x:Name="LoginTextBox" Style="{DynamicResource BodyTextBox}"
                  Grid.Row="1" Grid.Column="1"
                  Height="35"
-                 Text="tema"/>
+                 Text="tema234"/>
 
         <PasswordBox x:Name="PasswordPasswordBox" Style="{DynamicResource BodyPasswordBox}"
                  Grid.Row="2" Grid.Column="1" Height="35"
