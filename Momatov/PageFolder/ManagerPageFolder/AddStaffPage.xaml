@@ -101,17 +101,43 @@
             Grid.Column="4"
             Grid.Row="5"/>
 
-        <Label Content="Фото"
+        <!--<Label Content="Фото"
                Style="{DynamicResource HeaderLabel}"
                Grid.Column="3"
-               Grid.Row="7"/>
+               Grid.Row="7"/>-->
 
-        <Button x:Name="LoadPhotoButton"
+        <Ellipse Height="70" Width="70"
+                 Grid.Column="3"
+                 Grid.Row="7"
+                 Stroke="{DynamicResource BorderColor}"
+                 StrokeThickness="2"
+                 >
+            <Ellipse.Fill>
+                <ImageBrush x:Name="StaffImage" ImageSource="/SourceFolder/no-image.png" Stretch="UniformToFill"
+                            />
+            </Ellipse.Fill>
+        </Ellipse>
+
+        <Grid
+                    Grid.Column="4"
+                Grid.Row="7">
+            <Button x:Name="LoadPhotoButton"
                 Content="Добавить фото"
-                Grid.Column="4"
-                Grid.Row="7"
+                Width="175"
                 Click="LoadPhotoButton_Click"
-                Style="{DynamicResource BodyButton}"/>
+                Style="{DynamicResource BodyButton}"
+                    HorizontalAlignment="Left"/>
+
+            <Button x:Name="ClearPhotoButton"
+                Width="50"
+                Content="🗑"
+                Click="ClearPhotoButton_Click"
+                Style="{DynamicResource BodyButton}"
+                    HorizontalAlignment="Right"/>
+            
+        </Grid>
+
+        
 
         <Button x:Name="AddStaffButton"
                 Content="Добавить сотрудника"
@@ -122,5 +148,6 @@
                 Width="200"
                 Click="AddStaffButton_Click"
                 Style="{DynamicResource BodyButton}"/>
+
     </Grid>
 </Page>

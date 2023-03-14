@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Microsoft.Win32;
 
 namespace Momatov.PageFolder.ManagerPageFolder
 {
@@ -27,21 +28,20 @@ namespace Momatov.PageFolder.ManagerPageFolder
         public AddStaffPage()
         {
             InitializeComponent();
-            RoleComboBox.ItemsSource = DBEntities.GetContext().UserRole;
+            RoleComboBox.ItemsSource = DBEntities.GetContext().UserRole.ToList();
         }
 
-        private void AddStaffButton_Click(object sender, RoutedEventArgs e)
+        private async void AddStaffButton_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                if(ValidateUser() && ValidateStaff())
+                if(ValidateStaff() && ValidateUser())
                 {
                     AddUser();
                     AddStaff();
-                }
-                
-
-                
+                    await DBEntities.GetContext().SaveChangesAsync();
+                    MBClass.Information("Сотрудник добавлен!");
+                } 
             }
             catch(Exception ex)
             {
@@ -54,6 +54,7 @@ namespace Momatov.PageFolder.ManagerPageFolder
             user.Login = LoginTextBox.Text;
             user.Password = PasswordTextBox.Text;
             user.RoleID = RoleComboBox.SelectedIndex+1;
+            DBEntities.GetContext().User.Add(user);
         }
 
         private bool ValidateStaff()
@@ -81,7 +82,12 @@ namespace Momatov.PageFolder.ManagerPageFolder
 
         private void AddStaff()
         {
-            throw new NotImplementedException();
+            staff.User = user;
+            staff.LastName = LastNameTextBox.Text;
+            staff.MiddleName = MiddleNameTextBox.Text;
+            staff.FirstName = FirstNameTextBox.Text;
+            staff.Phone = PhoneTextBox.Text;
+            DBEntities.GetContext().Staff.Add(staff);
         }
 
         private bool ValidateUser()
@@ -116,7 +122,28 @@ namespace Momatov.PageFolder.ManagerPageFolder
 
         private void LoadPhotoButton_Click(object sender, RoutedEventArgs e)
         {
-
+            OpenFileDialog fileDialog = new OpenFileDialog();
+            fileDialog.Filter = "Image Files(*.JPG;*.PNG;*.JPEG)|*.JPG;*.PNG;*.JPEG|All files (*.*)|*.*";
+            fileDialog.InitialDirectory = "c:\\";
+            fileDialog.Title = "Выберите изображение";
+            if(fileDialog.ShowDialog() == true)
+            {
+                try
+                {
+                    staff.Photo = ImageClass.ConvertImageToBase64String(fileDialog.FileName);
+                    StaffImage.ImageSource = ImageClass.ConvertBase64StringToBitmapImage(staff.Photo);
+                }
+                catch(Exception ex)
+                {
+                    MBClass.Error(ex);
+                }
+                
+            }
+        }
+        private void ClearPhotoButton_Click(object sender, RoutedEventArgs e)
+        {
+            StaffImage.ImageSource = new BitmapImage(new Uri("pack://application:,,,/SourceFolder/no-image.png")); ;
+            staff.Photo = null;
         }
     }
 }

@@ -182,6 +182,9 @@
       <DependentUpon>DBModel.edmx</DependentUpon>
       <LastGenOutput>DBModel.cs</LastGenOutput>
     </Content>
+    <Resource Include="SourceFolder\no-image.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Content Include="SourceFolder\logo.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
