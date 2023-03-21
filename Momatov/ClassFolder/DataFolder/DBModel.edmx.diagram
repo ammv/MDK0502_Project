@@ -4,13 +4,62 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="500d0eccc06a4b5699350effba60beb2" Name="Diagram1">
+      <Diagram DiagramId="500d0eccc06a4b5699350effba60beb2" Name="Diagram1" ZoomLevel="34">
         <EntityTypeShape EntityType="DBModel.Staff" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DBModel.sysdiagrams" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DBModel.User" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
         <EntityTypeShape EntityType="DBModel.UserRole" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
         <AssociationConnector Association="DBModel.FK__Users__RoleID__5165187F" ManuallyRouted="false" />
         <AssociationConnector Association="DBModel.FK_Staff_User" />
+        <EntityTypeShape EntityType="DBModel.Address" Width="1.5" PointX="13.125" PointY="2.5" />
+        <EntityTypeShape EntityType="DBModel.Assembling" Width="1.5" PointX="5.25" PointY="16" />
+        <EntityTypeShape EntityType="DBModel.City" Width="1.5" PointX="10.875" PointY="2.75" />
+        <EntityTypeShape EntityType="DBModel.Client" Width="1.5" PointX="12.875" PointY="11" />
+        <EntityTypeShape EntityType="DBModel.ClientType" Width="1.5" PointX="10.625" PointY="11.5" />
+        <EntityTypeShape EntityType="DBModel.Country" Width="1.5" PointX="8.625" PointY="2.875" />
+        <EntityTypeShape EntityType="DBModel.Coverage" Width="1.5" PointX="5.25" PointY="22.125" />
+        <EntityTypeShape EntityType="DBModel.Detail" Width="1.5" PointX="5.25" PointY="19.25" />
+        <EntityTypeShape EntityType="DBModel.Equipment" Width="1.5" PointX="3.75" PointY="25.25" />
+        <EntityTypeShape EntityType="DBModel.Item" Width="1.5" PointX="5.25" PointY="10.25" />
+        <EntityTypeShape EntityType="DBModel.Order" Width="1.5" PointX="15.125" PointY="11" />
+        <EntityTypeShape EntityType="DBModel.OrderState" Width="1.5" PointX="12.875" PointY="14.5" />
+        <EntityTypeShape EntityType="DBModel.Product" Width="1.5" PointX="5.25" PointY="29.375" />
+        <EntityTypeShape EntityType="DBModel.ProductType" Width="1.5" PointX="13.625" PointY="7.375" />
+        <EntityTypeShape EntityType="DBModel.QualityControl" Width="1.5" PointX="7.5" PointY="13" />
+        <EntityTypeShape EntityType="DBModel.RawMaterial" Width="1.5" PointX="10.875" PointY="7" />
+        <EntityTypeShape EntityType="DBModel.Realization" Width="1.5" PointX="15.875" PointY="7" />
+        <EntityTypeShape EntityType="DBModel.Region" Width="1.5" PointX="3" PointY="7.5" />
+        <EntityTypeShape EntityType="DBModel.RegionTypeOfWork" Width="1.5" PointX="3" PointY="12.375" />
+        <EntityTypeShape EntityType="DBModel.TypeRawMaterial" Width="1.5" PointX="8.625" PointY="7.5" />
+        <EntityTypeShape EntityType="DBModel.UnitOfMeasurement" Width="1.5" PointX="8.625" PointY="10.5" />
+        <EntityTypeShape EntityType="DBModel.Vendor" Width="1.5" PointX="15.375" PointY="2.5" />
+        <EntityTypeShape EntityType="DBModel.Workshop" Width="1.5" PointX="0.75" PointY="4.25" />
+        <EntityTypeShape EntityType="DBModel.Drying" Width="1.5" PointX="5.25" PointY="13.375" />
+        <EntityTypeShape EntityType="DBModel.WorkshopEquipment" Width="1.5" PointX="6" PointY="7.25" />
+        <AssociationConnector Association="DBModel.FK__Address__CityID__0C50D423" />
+        <AssociationConnector Association="DBModel.FK__Address__Country__0B5CAFEA" />
+        <AssociationConnector Association="DBModel.FK__Vendor__AddressI__0F2D40CE" />
+        <AssociationConnector Association="DBModel.FK__Assemblin__Regio__3CF40B7E" />
+        <AssociationConnector Association="DBModel.FK__City__CountryID__0880433F" />
+        <AssociationConnector Association="DBModel.FK__Client__ClientTy__1209AD79" />
+        <AssociationConnector Association="DBModel.FK__Order__ClientID__1B9317B3" />
+        <AssociationConnector Association="DBModel.FK__Coverage__Region__3FD07829" />
+        <AssociationConnector Association="DBModel.FK__Detail__RegionID__318258D2" />
+        <AssociationConnector Association="DBModel.FK__QualityCo__Detai__382F5661" />
+        <AssociationConnector Association="DBModel.FK__WorkshopE__Equip__2704CA5F" />
+        <AssociationConnector Association="DBModel.FK__Item__RegionID__345EC57D" />
+        <AssociationConnector Association="DBModel.FK__QualityCo__ItemI__39237A9A" />
+        <AssociationConnector Association="DBModel.FK__Order__State__1A9EF37A" />
+        <AssociationConnector Association="DBModel.FK__QualityCo__Produ__3A179ED3" />
+        <AssociationConnector Association="DBModel.FK__Realizati__Produ__2057CCD0" />
+        <AssociationConnector Association="DBModel.FK__QualityCo__Regio__373B3228" />
+        <AssociationConnector Association="DBModel.FK__RawMateri__TypeR__16CE6296" />
+        <AssociationConnector Association="DBModel.FK__RawMateri__UnitO__17C286CF" />
+        <AssociationConnector Association="DBModel.FK__Drying__RegionID__41B8C09B" />
+        <AssociationConnector Association="DBModel.FK__Region__TypeOfWo__2CBDA3B5" />
+        <AssociationConnector Association="DBModel.FK__Region__Workshop__2BC97F7C" />
+        <AssociationConnector Association="DBModel.FK_Staff_Workshop" />
+        <AssociationConnector Association="DBModel.FK__WorkshopE__Works__2610A626" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

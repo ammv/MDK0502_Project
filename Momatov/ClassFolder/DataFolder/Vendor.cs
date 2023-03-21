@@ -12,18 +12,15 @@ namespace Momatov.ClassFolder.DataFolder
     using System;
     using System.Collections.Generic;
     
-    public partial class Staff
+    public partial class Vendor
     {
         public int ID { get; set; }
-        public string LastName { get; set; }
-        public string FirstName { get; set; }
-        public string MiddleName { get; set; }
-        public string Phone { get; set; }
-        public int UserID { get; set; }
-        public string Photo { get; set; }
-        public Nullable<int> WorkshopID { get; set; }
+        public int ScopeOfDelivery { get; set; }
+        public System.DateTime DeliveryDate { get; set; }
+        public string DeliveryName { get; set; }
+        public string Name { get; set; }
+        public Nullable<int> AddressID { get; set; }
     
-        public virtual User User { get; set; }
-        public virtual Workshop Workshop { get; set; }
+        public virtual Address Address { get; set; }
     }
 }

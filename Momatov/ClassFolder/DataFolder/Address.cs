@@ -12,18 +12,23 @@ namespace Momatov.ClassFolder.DataFolder
     using System;
     using System.Collections.Generic;
     
-    public partial class Staff
+    public partial class Address
     {
-        public int ID { get; set; }
-        public string LastName { get; set; }
-        public string FirstName { get; set; }
-        public string MiddleName { get; set; }
-        public string Phone { get; set; }
-        public int UserID { get; set; }
-        public string Photo { get; set; }
-        public Nullable<int> WorkshopID { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Address()
+        {
+            this.Vendor = new HashSet<Vendor>();
+        }
     
-        public virtual User User { get; set; }
-        public virtual Workshop Workshop { get; set; }
+        public int ID { get; set; }
+        public Nullable<int> CountryID { get; set; }
+        public Nullable<int> CityID { get; set; }
+        public string Street { get; set; }
+        public int HouseNumber { get; set; }
+    
+        public virtual City City { get; set; }
+        public virtual Country Country { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Vendor> Vendor { get; set; }
     }
 }

@@ -5,6 +5,194 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="Хранилище DBModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Address">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CountryID" Type="int" />
+          <Property Name="CityID" Type="int" />
+          <Property Name="Street" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="HouseNumber" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Assembling">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RegionID" Type="int" />
+          <Property Name="ItemName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="FastenerName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="AccessoriesName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="FastenerCount" Type="int" Nullable="false" />
+          <Property Name="AccessoriesCount" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CountryID" Type="int" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="70" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="70" Nullable="false" />
+          <Property Name="MiddleName" Type="nvarchar" MaxLength="70" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="17" Nullable="false" />
+          <Property Name="ClientTypeID" Type="int" />
+        </EntityType>
+        <EntityType Name="ClientType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="70" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Country">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Coverage">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RegionID" Type="int" />
+          <Property Name="Size" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Count" Type="int" />
+        </EntityType>
+        <EntityType Name="Detail">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RegionID" Type="int" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Size" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "user31.dbo.Drying" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="Drying">
+          <Key>
+            <PropertyRef Name="Size" />
+          </Key>
+          <Property Name="RegionID" Type="int" />
+          <Property Name="Size" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Count" Type="int" />
+        </EntityType>
+        <EntityType Name="Equipment">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Count" Type="int" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="300" />
+        </EntityType>
+        <EntityType Name="Item">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="RegionID" Type="int" />
+          <Property Name="Size" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Count" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Note" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Count" Type="int" Nullable="false" />
+          <Property Name="OrderDate" Type="date" Nullable="false" />
+          <Property Name="State" Type="int" />
+          <Property Name="ClientID" Type="int" />
+        </EntityType>
+        <EntityType Name="OrderState">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="70" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="ReleaseNumber" Type="int" Nullable="false" />
+          <Property Name="Cost" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Guarantee" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProductType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="QualityControl">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RegionID" Type="int" />
+          <Property Name="DetailID" Type="int" />
+          <Property Name="ItemID" Type="int" />
+          <Property Name="ProductID" Type="int" />
+          <Property Name="GOST" Type="nvarchar" MaxLength="25" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RawMaterial">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="TypeRawMaterialID" Type="int" />
+          <Property Name="Count" Type="int" Nullable="false" />
+          <Property Name="Guarantee" Type="int" Nullable="false" />
+          <Property Name="UnitOfMeasurementID" Type="int" Nullable="false" />
+          <Property Name="UnitCost" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Realization">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Volume" Type="int" Nullable="false" />
+          <Property Name="RealizationDate" Type="date" Nullable="false" />
+          <Property Name="ProductTypeID" Type="int" Nullable="false" />
+          <Property Name="ReleaseNumber" Type="int" Nullable="false" />
+          <Property Name="UnitPrice" Type="decimal" Precision="10" Scale="2" />
+        </EntityType>
+        <EntityType Name="Region">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="WorkshopID" Type="int" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="TypeOfWork" Type="int" />
+        </EntityType>
+        <EntityType Name="RegionTypeOfWork">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
         <EntityType Name="Staff">
           <Key>
             <PropertyRef Name="ID" />
@@ -16,6 +204,7 @@
           <Property Name="Phone" Type="nvarchar" MaxLength="17" Nullable="false" />
           <Property Name="UserID" Type="int" Nullable="false" />
           <Property Name="Photo" Type="nvarchar(max)" />
+          <Property Name="WorkshopID" Type="int" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -26,6 +215,20 @@
           <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="TypeRawMaterial">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UnitOfMeasurement">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="3" Nullable="false" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -43,6 +246,310 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="30" />
         </EntityType>
+        <EntityType Name="Vendor">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ScopeOfDelivery" Type="int" Nullable="false" />
+          <Property Name="DeliveryDate" Type="date" Nullable="false" />
+          <Property Name="DeliveryName" Type="nvarchar" MaxLength="100" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="AddressID" Type="int" />
+        </EntityType>
+        <EntityType Name="Workshop">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "user31.dbo.WorkshopEquipment" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="WorkshopEquipment">
+          <Key>
+            <PropertyRef Name="Count" />
+          </Key>
+          <Property Name="WorkshopID" Type="int" />
+          <Property Name="EquipmentID" Type="int" />
+          <Property Name="Count" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Address__CityID__0C50D423">
+          <End Role="City" Type="Self.City" Multiplicity="0..1" />
+          <End Role="Address" Type="Self.Address" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Address">
+              <PropertyRef Name="CityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Address__Country__0B5CAFEA">
+          <End Role="Country" Type="Self.Country" Multiplicity="0..1" />
+          <End Role="Address" Type="Self.Address" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Address">
+              <PropertyRef Name="CountryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Assemblin__Regio__3CF40B7E">
+          <End Role="Region" Type="Self.Region" Multiplicity="0..1" />
+          <End Role="Assembling" Type="Self.Assembling" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Region">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Assembling">
+              <PropertyRef Name="RegionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__City__CountryID__0880433F">
+          <End Role="Country" Type="Self.Country" Multiplicity="0..1" />
+          <End Role="City" Type="Self.City" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="City">
+              <PropertyRef Name="CountryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Client__ClientTy__1209AD79">
+          <End Role="ClientType" Type="Self.ClientType" Multiplicity="0..1" />
+          <End Role="Client" Type="Self.Client" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ClientType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Client">
+              <PropertyRef Name="ClientTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Coverage__Region__3FD07829">
+          <End Role="Region" Type="Self.Region" Multiplicity="0..1" />
+          <End Role="Coverage" Type="Self.Coverage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Region">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Coverage">
+              <PropertyRef Name="RegionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Detail__RegionID__318258D2">
+          <End Role="Region" Type="Self.Region" Multiplicity="0..1" />
+          <End Role="Detail" Type="Self.Detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Region">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Detail">
+              <PropertyRef Name="RegionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Drying__RegionID__41B8C09B">
+          <End Role="Region" Type="Self.Region" Multiplicity="0..1" />
+          <End Role="Drying" Type="Self.Drying" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Region">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Drying">
+              <PropertyRef Name="RegionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Item__RegionID__345EC57D">
+          <End Role="Region" Type="Self.Region" Multiplicity="0..1" />
+          <End Role="Item" Type="Self.Item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Region">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Item">
+              <PropertyRef Name="RegionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Order__ClientID__1B9317B3">
+          <End Role="Client" Type="Self.Client" Multiplicity="0..1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="ClientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Order__State__1A9EF37A">
+          <End Role="OrderState" Type="Self.OrderState" Multiplicity="0..1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrderState">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="State" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__QualityCo__Detai__382F5661">
+          <End Role="Detail" Type="Self.Detail" Multiplicity="0..1" />
+          <End Role="QualityControl" Type="Self.QualityControl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Detail">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="QualityControl">
+              <PropertyRef Name="DetailID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__QualityCo__ItemI__39237A9A">
+          <End Role="Item" Type="Self.Item" Multiplicity="0..1" />
+          <End Role="QualityControl" Type="Self.QualityControl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Item">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="QualityControl">
+              <PropertyRef Name="ItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__QualityCo__Produ__3A179ED3">
+          <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+          <End Role="QualityControl" Type="Self.QualityControl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="QualityControl">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__QualityCo__Regio__373B3228">
+          <End Role="Region" Type="Self.Region" Multiplicity="0..1" />
+          <End Role="QualityControl" Type="Self.QualityControl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Region">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="QualityControl">
+              <PropertyRef Name="RegionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RawMateri__TypeR__16CE6296">
+          <End Role="TypeRawMaterial" Type="Self.TypeRawMaterial" Multiplicity="0..1" />
+          <End Role="RawMaterial" Type="Self.RawMaterial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeRawMaterial">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="RawMaterial">
+              <PropertyRef Name="TypeRawMaterialID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RawMateri__UnitO__17C286CF">
+          <End Role="UnitOfMeasurement" Type="Self.UnitOfMeasurement" Multiplicity="1" />
+          <End Role="RawMaterial" Type="Self.RawMaterial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UnitOfMeasurement">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="RawMaterial">
+              <PropertyRef Name="UnitOfMeasurementID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Realizati__Produ__2057CCD0">
+          <End Role="ProductType" Type="Self.ProductType" Multiplicity="1" />
+          <End Role="Realization" Type="Self.Realization" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Realization">
+              <PropertyRef Name="ProductTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Region__TypeOfWo__2CBDA3B5">
+          <End Role="RegionTypeOfWork" Type="Self.RegionTypeOfWork" Multiplicity="0..1" />
+          <End Role="Region" Type="Self.Region" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RegionTypeOfWork">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Region">
+              <PropertyRef Name="TypeOfWork" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Region__Workshop__2BC97F7C">
+          <End Role="Workshop" Type="Self.Workshop" Multiplicity="0..1" />
+          <End Role="Region" Type="Self.Region" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Workshop">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Region">
+              <PropertyRef Name="WorkshopID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Vendor__AddressI__0F2D40CE">
+          <End Role="Address" Type="Self.Address" Multiplicity="0..1" />
+          <End Role="Vendor" Type="Self.Vendor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Address">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Vendor">
+              <PropertyRef Name="AddressID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__WorkshopE__Equip__2704CA5F">
+          <End Role="Equipment" Type="Self.Equipment" Multiplicity="0..1" />
+          <End Role="WorkshopEquipment" Type="Self.WorkshopEquipment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Equipment">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="WorkshopEquipment">
+              <PropertyRef Name="EquipmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__WorkshopE__Works__2610A626">
+          <End Role="Workshop" Type="Self.Workshop" Multiplicity="0..1" />
+          <End Role="WorkshopEquipment" Type="Self.WorkshopEquipment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Workshop">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="WorkshopEquipment">
+              <PropertyRef Name="WorkshopID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Staff_User">
           <End Role="User" Type="Self.User" Multiplicity="1" />
           <End Role="Staff" Type="Self.Staff" Multiplicity="*" />
@@ -52,6 +559,18 @@
             </Principal>
             <Dependent Role="Staff">
               <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Staff_Workshop">
+          <End Role="Workshop" Type="Self.Workshop" Multiplicity="0..1" />
+          <End Role="Staff" Type="Self.Staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Workshop">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Staff">
+              <PropertyRef Name="WorkshopID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -99,12 +618,145 @@
         </Function>
         <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="Хранилище DBModelContainer">
+          <EntitySet Name="Address" EntityType="Self.Address" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Assembling" EntityType="Self.Assembling" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="City" EntityType="Self.City" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ClientType" EntityType="Self.ClientType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Country" EntityType="Self.Country" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Coverage" EntityType="Self.Coverage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Detail" EntityType="Self.Detail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Equipment" EntityType="Self.Equipment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Item" EntityType="Self.Item" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderState" EntityType="Self.OrderState" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductType" EntityType="Self.ProductType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QualityControl" EntityType="Self.QualityControl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RawMaterial" EntityType="Self.RawMaterial" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Realization" EntityType="Self.Realization" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Region" EntityType="Self.Region" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RegionTypeOfWork" EntityType="Self.RegionTypeOfWork" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Staff" EntityType="Self.Staff" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TypeRawMaterial" EntityType="Self.TypeRawMaterial" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UnitOfMeasurement" EntityType="Self.UnitOfMeasurement" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserRole" EntityType="Self.UserRole" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Vendor" EntityType="Self.Vendor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Workshop" EntityType="Self.Workshop" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Drying" EntityType="Self.Drying" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Drying].[RegionID] AS [RegionID], 
+    [Drying].[Size] AS [Size], 
+    [Drying].[Count] AS [Count]
+    FROM [dbo].[Drying] AS [Drying]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="WorkshopEquipment" EntityType="Self.WorkshopEquipment" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [WorkshopEquipment].[WorkshopID] AS [WorkshopID], 
+    [WorkshopEquipment].[EquipmentID] AS [EquipmentID], 
+    [WorkshopEquipment].[Count] AS [Count]
+    FROM [dbo].[WorkshopEquipment] AS [WorkshopEquipment]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK__Address__CityID__0C50D423" Association="Self.FK__Address__CityID__0C50D423">
+            <End Role="City" EntitySet="City" />
+            <End Role="Address" EntitySet="Address" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Address__Country__0B5CAFEA" Association="Self.FK__Address__Country__0B5CAFEA">
+            <End Role="Country" EntitySet="Country" />
+            <End Role="Address" EntitySet="Address" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Assemblin__Regio__3CF40B7E" Association="Self.FK__Assemblin__Regio__3CF40B7E">
+            <End Role="Region" EntitySet="Region" />
+            <End Role="Assembling" EntitySet="Assembling" />
+          </AssociationSet>
+          <AssociationSet Name="FK__City__CountryID__0880433F" Association="Self.FK__City__CountryID__0880433F">
+            <End Role="Country" EntitySet="Country" />
+            <End Role="City" EntitySet="City" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Client__ClientTy__1209AD79" Association="Self.FK__Client__ClientTy__1209AD79">
+            <End Role="ClientType" EntitySet="ClientType" />
+            <End Role="Client" EntitySet="Client" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Coverage__Region__3FD07829" Association="Self.FK__Coverage__Region__3FD07829">
+            <End Role="Region" EntitySet="Region" />
+            <End Role="Coverage" EntitySet="Coverage" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Detail__RegionID__318258D2" Association="Self.FK__Detail__RegionID__318258D2">
+            <End Role="Region" EntitySet="Region" />
+            <End Role="Detail" EntitySet="Detail" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Drying__RegionID__41B8C09B" Association="Self.FK__Drying__RegionID__41B8C09B">
+            <End Role="Region" EntitySet="Region" />
+            <End Role="Drying" EntitySet="Drying" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Item__RegionID__345EC57D" Association="Self.FK__Item__RegionID__345EC57D">
+            <End Role="Region" EntitySet="Region" />
+            <End Role="Item" EntitySet="Item" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Order__ClientID__1B9317B3" Association="Self.FK__Order__ClientID__1B9317B3">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Order__State__1A9EF37A" Association="Self.FK__Order__State__1A9EF37A">
+            <End Role="OrderState" EntitySet="OrderState" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK__QualityCo__Detai__382F5661" Association="Self.FK__QualityCo__Detai__382F5661">
+            <End Role="Detail" EntitySet="Detail" />
+            <End Role="QualityControl" EntitySet="QualityControl" />
+          </AssociationSet>
+          <AssociationSet Name="FK__QualityCo__ItemI__39237A9A" Association="Self.FK__QualityCo__ItemI__39237A9A">
+            <End Role="Item" EntitySet="Item" />
+            <End Role="QualityControl" EntitySet="QualityControl" />
+          </AssociationSet>
+          <AssociationSet Name="FK__QualityCo__Produ__3A179ED3" Association="Self.FK__QualityCo__Produ__3A179ED3">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="QualityControl" EntitySet="QualityControl" />
+          </AssociationSet>
+          <AssociationSet Name="FK__QualityCo__Regio__373B3228" Association="Self.FK__QualityCo__Regio__373B3228">
+            <End Role="Region" EntitySet="Region" />
+            <End Role="QualityControl" EntitySet="QualityControl" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RawMateri__TypeR__16CE6296" Association="Self.FK__RawMateri__TypeR__16CE6296">
+            <End Role="TypeRawMaterial" EntitySet="TypeRawMaterial" />
+            <End Role="RawMaterial" EntitySet="RawMaterial" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RawMateri__UnitO__17C286CF" Association="Self.FK__RawMateri__UnitO__17C286CF">
+            <End Role="UnitOfMeasurement" EntitySet="UnitOfMeasurement" />
+            <End Role="RawMaterial" EntitySet="RawMaterial" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Realizati__Produ__2057CCD0" Association="Self.FK__Realizati__Produ__2057CCD0">
+            <End Role="ProductType" EntitySet="ProductType" />
+            <End Role="Realization" EntitySet="Realization" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Region__TypeOfWo__2CBDA3B5" Association="Self.FK__Region__TypeOfWo__2CBDA3B5">
+            <End Role="RegionTypeOfWork" EntitySet="RegionTypeOfWork" />
+            <End Role="Region" EntitySet="Region" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Region__Workshop__2BC97F7C" Association="Self.FK__Region__Workshop__2BC97F7C">
+            <End Role="Workshop" EntitySet="Workshop" />
+            <End Role="Region" EntitySet="Region" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Vendor__AddressI__0F2D40CE" Association="Self.FK__Vendor__AddressI__0F2D40CE">
+            <End Role="Address" EntitySet="Address" />
+            <End Role="Vendor" EntitySet="Vendor" />
+          </AssociationSet>
+          <AssociationSet Name="FK__WorkshopE__Equip__2704CA5F" Association="Self.FK__WorkshopE__Equip__2704CA5F">
+            <End Role="Equipment" EntitySet="Equipment" />
+            <End Role="WorkshopEquipment" EntitySet="WorkshopEquipment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__WorkshopE__Works__2610A626" Association="Self.FK__WorkshopE__Works__2610A626">
+            <End Role="Workshop" EntitySet="Workshop" />
+            <End Role="WorkshopEquipment" EntitySet="WorkshopEquipment" />
+          </AssociationSet>
           <AssociationSet Name="FK_Staff_User" Association="Self.FK_Staff_User">
             <End Role="User" EntitySet="User" />
+            <End Role="Staff" EntitySet="Staff" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Staff_Workshop" Association="Self.FK_Staff_Workshop">
+            <End Role="Workshop" EntitySet="Workshop" />
             <End Role="Staff" EntitySet="Staff" />
           </AssociationSet>
           <AssociationSet Name="FK_User_UserRole1" Association="Self.FK_User_UserRole1">
@@ -128,6 +780,8 @@
           <Property Name="UserID" Type="Int32" Nullable="false" />
           <Property Name="Photo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="User" Relationship="DBModel.FK_Staff_User" FromRole="Staff" ToRole="User" />
+          <Property Name="WorkshopID" Type="Int32" />
+          <NavigationProperty Name="Workshop" Relationship="DBModel.FK_Staff_Workshop" FromRole="Staff" ToRole="Workshop" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -213,6 +867,127 @@
             <End Role="User" EntitySet="User" />
             <End Role="Staff" EntitySet="Staff" />
           </AssociationSet>
+          <EntitySet Name="Address" EntityType="DBModel.Address" />
+          <EntitySet Name="Assembling" EntityType="DBModel.Assembling" />
+          <EntitySet Name="City" EntityType="DBModel.City" />
+          <EntitySet Name="Client" EntityType="DBModel.Client" />
+          <EntitySet Name="ClientType" EntityType="DBModel.ClientType" />
+          <EntitySet Name="Country" EntityType="DBModel.Country" />
+          <EntitySet Name="Coverage" EntityType="DBModel.Coverage" />
+          <EntitySet Name="Detail" EntityType="DBModel.Detail" />
+          <EntitySet Name="Equipment" EntityType="DBModel.Equipment" />
+          <EntitySet Name="Item" EntityType="DBModel.Item" />
+          <EntitySet Name="Order" EntityType="DBModel.Order" />
+          <EntitySet Name="OrderState" EntityType="DBModel.OrderState" />
+          <EntitySet Name="Product" EntityType="DBModel.Product" />
+          <EntitySet Name="ProductType" EntityType="DBModel.ProductType" />
+          <EntitySet Name="QualityControl" EntityType="DBModel.QualityControl" />
+          <EntitySet Name="RawMaterial" EntityType="DBModel.RawMaterial" />
+          <EntitySet Name="Realization" EntityType="DBModel.Realization" />
+          <EntitySet Name="Region" EntityType="DBModel.Region" />
+          <EntitySet Name="RegionTypeOfWork" EntityType="DBModel.RegionTypeOfWork" />
+          <EntitySet Name="TypeRawMaterial" EntityType="DBModel.TypeRawMaterial" />
+          <EntitySet Name="UnitOfMeasurement" EntityType="DBModel.UnitOfMeasurement" />
+          <EntitySet Name="Vendor" EntityType="DBModel.Vendor" />
+          <EntitySet Name="Workshop" EntityType="DBModel.Workshop" />
+          <EntitySet Name="Drying" EntityType="DBModel.Drying" />
+          <EntitySet Name="WorkshopEquipment" EntityType="DBModel.WorkshopEquipment" />
+          <AssociationSet Name="FK__Address__CityID__0C50D423" Association="DBModel.FK__Address__CityID__0C50D423">
+            <End Role="City" EntitySet="City" />
+            <End Role="Address" EntitySet="Address" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Address__Country__0B5CAFEA" Association="DBModel.FK__Address__Country__0B5CAFEA">
+            <End Role="Country" EntitySet="Country" />
+            <End Role="Address" EntitySet="Address" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Vendor__AddressI__0F2D40CE" Association="DBModel.FK__Vendor__AddressI__0F2D40CE">
+            <End Role="Address" EntitySet="Address" />
+            <End Role="Vendor" EntitySet="Vendor" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Assemblin__Regio__3CF40B7E" Association="DBModel.FK__Assemblin__Regio__3CF40B7E">
+            <End Role="Region" EntitySet="Region" />
+            <End Role="Assembling" EntitySet="Assembling" />
+          </AssociationSet>
+          <AssociationSet Name="FK__City__CountryID__0880433F" Association="DBModel.FK__City__CountryID__0880433F">
+            <End Role="Country" EntitySet="Country" />
+            <End Role="City" EntitySet="City" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Client__ClientTy__1209AD79" Association="DBModel.FK__Client__ClientTy__1209AD79">
+            <End Role="ClientType" EntitySet="ClientType" />
+            <End Role="Client" EntitySet="Client" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Order__ClientID__1B9317B3" Association="DBModel.FK__Order__ClientID__1B9317B3">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Coverage__Region__3FD07829" Association="DBModel.FK__Coverage__Region__3FD07829">
+            <End Role="Region" EntitySet="Region" />
+            <End Role="Coverage" EntitySet="Coverage" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Detail__RegionID__318258D2" Association="DBModel.FK__Detail__RegionID__318258D2">
+            <End Role="Region" EntitySet="Region" />
+            <End Role="Detail" EntitySet="Detail" />
+          </AssociationSet>
+          <AssociationSet Name="FK__QualityCo__Detai__382F5661" Association="DBModel.FK__QualityCo__Detai__382F5661">
+            <End Role="Detail" EntitySet="Detail" />
+            <End Role="QualityControl" EntitySet="QualityControl" />
+          </AssociationSet>
+          <AssociationSet Name="FK__WorkshopE__Equip__2704CA5F" Association="DBModel.FK__WorkshopE__Equip__2704CA5F">
+            <End Role="Equipment" EntitySet="Equipment" />
+            <End Role="WorkshopEquipment" EntitySet="WorkshopEquipment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Item__RegionID__345EC57D" Association="DBModel.FK__Item__RegionID__345EC57D">
+            <End Role="Region" EntitySet="Region" />
+            <End Role="Item" EntitySet="Item" />
+          </AssociationSet>
+          <AssociationSet Name="FK__QualityCo__ItemI__39237A9A" Association="DBModel.FK__QualityCo__ItemI__39237A9A">
+            <End Role="Item" EntitySet="Item" />
+            <End Role="QualityControl" EntitySet="QualityControl" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Order__State__1A9EF37A" Association="DBModel.FK__Order__State__1A9EF37A">
+            <End Role="OrderState" EntitySet="OrderState" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK__QualityCo__Produ__3A179ED3" Association="DBModel.FK__QualityCo__Produ__3A179ED3">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="QualityControl" EntitySet="QualityControl" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Realizati__Produ__2057CCD0" Association="DBModel.FK__Realizati__Produ__2057CCD0">
+            <End Role="ProductType" EntitySet="ProductType" />
+            <End Role="Realization" EntitySet="Realization" />
+          </AssociationSet>
+          <AssociationSet Name="FK__QualityCo__Regio__373B3228" Association="DBModel.FK__QualityCo__Regio__373B3228">
+            <End Role="Region" EntitySet="Region" />
+            <End Role="QualityControl" EntitySet="QualityControl" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RawMateri__TypeR__16CE6296" Association="DBModel.FK__RawMateri__TypeR__16CE6296">
+            <End Role="TypeRawMaterial" EntitySet="TypeRawMaterial" />
+            <End Role="RawMaterial" EntitySet="RawMaterial" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RawMateri__UnitO__17C286CF" Association="DBModel.FK__RawMateri__UnitO__17C286CF">
+            <End Role="UnitOfMeasurement" EntitySet="UnitOfMeasurement" />
+            <End Role="RawMaterial" EntitySet="RawMaterial" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Drying__RegionID__41B8C09B" Association="DBModel.FK__Drying__RegionID__41B8C09B">
+            <End Role="Region" EntitySet="Region" />
+            <End Role="Drying" EntitySet="Drying" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Region__TypeOfWo__2CBDA3B5" Association="DBModel.FK__Region__TypeOfWo__2CBDA3B5">
+            <End Role="RegionTypeOfWork" EntitySet="RegionTypeOfWork" />
+            <End Role="Region" EntitySet="Region" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Region__Workshop__2BC97F7C" Association="DBModel.FK__Region__Workshop__2BC97F7C">
+            <End Role="Workshop" EntitySet="Workshop" />
+            <End Role="Region" EntitySet="Region" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Staff_Workshop" Association="DBModel.FK_Staff_Workshop">
+            <End Role="Workshop" EntitySet="Workshop" />
+            <End Role="Staff" EntitySet="Staff" />
+          </AssociationSet>
+          <AssociationSet Name="FK__WorkshopE__Works__2610A626" Association="DBModel.FK__WorkshopE__Works__2610A626">
+            <End Role="Workshop" EntitySet="Workshop" />
+            <End Role="WorkshopEquipment" EntitySet="WorkshopEquipment" />
+          </AssociationSet>
         </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
@@ -237,6 +1012,567 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Address">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CountryID" Type="Int32" />
+          <Property Name="CityID" Type="Int32" />
+          <Property Name="Street" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="HouseNumber" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="City" Relationship="DBModel.FK__Address__CityID__0C50D423" FromRole="Address" ToRole="City" />
+          <NavigationProperty Name="Country" Relationship="DBModel.FK__Address__Country__0B5CAFEA" FromRole="Address" ToRole="Country" />
+          <NavigationProperty Name="Vendor" Relationship="DBModel.FK__Vendor__AddressI__0F2D40CE" FromRole="Address" ToRole="Vendor" />
+        </EntityType>
+        <EntityType Name="Assembling">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RegionID" Type="Int32" />
+          <Property Name="ItemName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="FastenerName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="AccessoriesName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="FastenerCount" Type="Int32" Nullable="false" />
+          <Property Name="AccessoriesCount" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Region" Relationship="DBModel.FK__Assemblin__Regio__3CF40B7E" FromRole="Assembling" ToRole="Region" />
+        </EntityType>
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CountryID" Type="Int32" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Address" Relationship="DBModel.FK__Address__CityID__0C50D423" FromRole="City" ToRole="Address" />
+          <NavigationProperty Name="Country" Relationship="DBModel.FK__City__CountryID__0880433F" FromRole="City" ToRole="Country" />
+        </EntityType>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="70" FixedLength="false" Unicode="true" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="70" FixedLength="false" Unicode="true" />
+          <Property Name="MiddleName" Type="String" MaxLength="70" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" Nullable="false" MaxLength="17" FixedLength="false" Unicode="true" />
+          <Property Name="ClientTypeID" Type="Int32" />
+          <NavigationProperty Name="ClientType" Relationship="DBModel.FK__Client__ClientTy__1209AD79" FromRole="Client" ToRole="ClientType" />
+          <NavigationProperty Name="Order" Relationship="DBModel.FK__Order__ClientID__1B9317B3" FromRole="Client" ToRole="Order" />
+        </EntityType>
+        <EntityType Name="ClientType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="70" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Client" Relationship="DBModel.FK__Client__ClientTy__1209AD79" FromRole="ClientType" ToRole="Client" />
+        </EntityType>
+        <EntityType Name="Country">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Address" Relationship="DBModel.FK__Address__Country__0B5CAFEA" FromRole="Country" ToRole="Address" />
+          <NavigationProperty Name="City" Relationship="DBModel.FK__City__CountryID__0880433F" FromRole="Country" ToRole="City" />
+        </EntityType>
+        <EntityType Name="Coverage">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RegionID" Type="Int32" />
+          <Property Name="Size" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="Count" Type="Int32" />
+          <NavigationProperty Name="Region" Relationship="DBModel.FK__Coverage__Region__3FD07829" FromRole="Coverage" ToRole="Region" />
+        </EntityType>
+        <EntityType Name="Detail">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RegionID" Type="Int32" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Size" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <NavigationProperty Name="Region" Relationship="DBModel.FK__Detail__RegionID__318258D2" FromRole="Detail" ToRole="Region" />
+          <NavigationProperty Name="QualityControl" Relationship="DBModel.FK__QualityCo__Detai__382F5661" FromRole="Detail" ToRole="QualityControl" />
+        </EntityType>
+        <EntityType Name="Equipment">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Count" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="WorkshopEquipment" Relationship="DBModel.FK__WorkshopE__Equip__2704CA5F" FromRole="Equipment" ToRole="WorkshopEquipment" />
+        </EntityType>
+        <EntityType Name="Item">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="RegionID" Type="Int32" />
+          <Property Name="Size" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="Count" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Region" Relationship="DBModel.FK__Item__RegionID__345EC57D" FromRole="Item" ToRole="Region" />
+          <NavigationProperty Name="QualityControl" Relationship="DBModel.FK__QualityCo__ItemI__39237A9A" FromRole="Item" ToRole="QualityControl" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Note" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Count" Type="Int32" Nullable="false" />
+          <Property Name="OrderDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="State" Type="Int32" />
+          <Property Name="ClientID" Type="Int32" />
+          <NavigationProperty Name="Client" Relationship="DBModel.FK__Order__ClientID__1B9317B3" FromRole="Order" ToRole="Client" />
+          <NavigationProperty Name="OrderState" Relationship="DBModel.FK__Order__State__1A9EF37A" FromRole="Order" ToRole="OrderState" />
+        </EntityType>
+        <EntityType Name="OrderState">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="70" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Order" Relationship="DBModel.FK__Order__State__1A9EF37A" FromRole="OrderState" ToRole="Order" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ReleaseNumber" Type="Int32" Nullable="false" />
+          <Property Name="Cost" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="Guarantee" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="QualityControl" Relationship="DBModel.FK__QualityCo__Produ__3A179ED3" FromRole="Product" ToRole="QualityControl" />
+        </EntityType>
+        <EntityType Name="ProductType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Realization" Relationship="DBModel.FK__Realizati__Produ__2057CCD0" FromRole="ProductType" ToRole="Realization" />
+        </EntityType>
+        <EntityType Name="QualityControl">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RegionID" Type="Int32" />
+          <Property Name="DetailID" Type="Int32" />
+          <Property Name="ItemID" Type="Int32" />
+          <Property Name="ProductID" Type="Int32" />
+          <Property Name="GOST" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Detail" Relationship="DBModel.FK__QualityCo__Detai__382F5661" FromRole="QualityControl" ToRole="Detail" />
+          <NavigationProperty Name="Item" Relationship="DBModel.FK__QualityCo__ItemI__39237A9A" FromRole="QualityControl" ToRole="Item" />
+          <NavigationProperty Name="Product" Relationship="DBModel.FK__QualityCo__Produ__3A179ED3" FromRole="QualityControl" ToRole="Product" />
+          <NavigationProperty Name="Region" Relationship="DBModel.FK__QualityCo__Regio__373B3228" FromRole="QualityControl" ToRole="Region" />
+        </EntityType>
+        <EntityType Name="RawMaterial">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TypeRawMaterialID" Type="Int32" />
+          <Property Name="Count" Type="Int32" Nullable="false" />
+          <Property Name="Guarantee" Type="Int32" Nullable="false" />
+          <Property Name="UnitOfMeasurementID" Type="Int32" Nullable="false" />
+          <Property Name="UnitCost" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <NavigationProperty Name="TypeRawMaterial" Relationship="DBModel.FK__RawMateri__TypeR__16CE6296" FromRole="RawMaterial" ToRole="TypeRawMaterial" />
+          <NavigationProperty Name="UnitOfMeasurement" Relationship="DBModel.FK__RawMateri__UnitO__17C286CF" FromRole="RawMaterial" ToRole="UnitOfMeasurement" />
+        </EntityType>
+        <EntityType Name="Realization">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Volume" Type="Int32" Nullable="false" />
+          <Property Name="RealizationDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ProductTypeID" Type="Int32" Nullable="false" />
+          <Property Name="ReleaseNumber" Type="Int32" Nullable="false" />
+          <Property Name="UnitPrice" Type="Decimal" Precision="10" Scale="2" />
+          <NavigationProperty Name="ProductType" Relationship="DBModel.FK__Realizati__Produ__2057CCD0" FromRole="Realization" ToRole="ProductType" />
+        </EntityType>
+        <EntityType Name="Region">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="WorkshopID" Type="Int32" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TypeOfWork" Type="Int32" />
+          <NavigationProperty Name="Assembling" Relationship="DBModel.FK__Assemblin__Regio__3CF40B7E" FromRole="Region" ToRole="Assembling" />
+          <NavigationProperty Name="Coverage" Relationship="DBModel.FK__Coverage__Region__3FD07829" FromRole="Region" ToRole="Coverage" />
+          <NavigationProperty Name="Detail" Relationship="DBModel.FK__Detail__RegionID__318258D2" FromRole="Region" ToRole="Detail" />
+          <NavigationProperty Name="Item" Relationship="DBModel.FK__Item__RegionID__345EC57D" FromRole="Region" ToRole="Item" />
+          <NavigationProperty Name="QualityControl" Relationship="DBModel.FK__QualityCo__Regio__373B3228" FromRole="Region" ToRole="QualityControl" />
+          <NavigationProperty Name="Drying" Relationship="DBModel.FK__Drying__RegionID__41B8C09B" FromRole="Region" ToRole="Drying" />
+          <NavigationProperty Name="RegionTypeOfWork" Relationship="DBModel.FK__Region__TypeOfWo__2CBDA3B5" FromRole="Region" ToRole="RegionTypeOfWork" />
+          <NavigationProperty Name="Workshop" Relationship="DBModel.FK__Region__Workshop__2BC97F7C" FromRole="Region" ToRole="Workshop" />
+        </EntityType>
+        <EntityType Name="RegionTypeOfWork">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Region" Relationship="DBModel.FK__Region__TypeOfWo__2CBDA3B5" FromRole="RegionTypeOfWork" ToRole="Region" />
+        </EntityType>
+        <EntityType Name="TypeRawMaterial">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="RawMaterial" Relationship="DBModel.FK__RawMateri__TypeR__16CE6296" FromRole="TypeRawMaterial" ToRole="RawMaterial" />
+        </EntityType>
+        <EntityType Name="UnitOfMeasurement">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="RawMaterial" Relationship="DBModel.FK__RawMateri__UnitO__17C286CF" FromRole="UnitOfMeasurement" ToRole="RawMaterial" />
+        </EntityType>
+        <EntityType Name="Vendor">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ScopeOfDelivery" Type="Int32" Nullable="false" />
+          <Property Name="DeliveryDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DeliveryName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="AddressID" Type="Int32" />
+          <NavigationProperty Name="Address" Relationship="DBModel.FK__Vendor__AddressI__0F2D40CE" FromRole="Vendor" ToRole="Address" />
+        </EntityType>
+        <EntityType Name="Workshop">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Region" Relationship="DBModel.FK__Region__Workshop__2BC97F7C" FromRole="Workshop" ToRole="Region" />
+          <NavigationProperty Name="Staff" Relationship="DBModel.FK_Staff_Workshop" FromRole="Workshop" ToRole="Staff" />
+          <NavigationProperty Name="WorkshopEquipment" Relationship="DBModel.FK__WorkshopE__Works__2610A626" FromRole="Workshop" ToRole="WorkshopEquipment" />
+        </EntityType>
+        <EntityType Name="Drying">
+          <Key>
+            <PropertyRef Name="Size" />
+          </Key>
+          <Property Name="RegionID" Type="Int32" />
+          <Property Name="Size" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="Count" Type="Int32" />
+          <NavigationProperty Name="Region" Relationship="DBModel.FK__Drying__RegionID__41B8C09B" FromRole="Drying" ToRole="Region" />
+        </EntityType>
+        <EntityType Name="WorkshopEquipment">
+          <Key>
+            <PropertyRef Name="Count" />
+          </Key>
+          <Property Name="WorkshopID" Type="Int32" />
+          <Property Name="EquipmentID" Type="Int32" />
+          <Property Name="Count" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Equipment" Relationship="DBModel.FK__WorkshopE__Equip__2704CA5F" FromRole="WorkshopEquipment" ToRole="Equipment" />
+          <NavigationProperty Name="Workshop" Relationship="DBModel.FK__WorkshopE__Works__2610A626" FromRole="WorkshopEquipment" ToRole="Workshop" />
+        </EntityType>
+        <Association Name="FK__Address__CityID__0C50D423">
+          <End Type="DBModel.City" Role="City" Multiplicity="0..1" />
+          <End Type="DBModel.Address" Role="Address" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Address">
+              <PropertyRef Name="CityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Address__Country__0B5CAFEA">
+          <End Type="DBModel.Country" Role="Country" Multiplicity="0..1" />
+          <End Type="DBModel.Address" Role="Address" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Address">
+              <PropertyRef Name="CountryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Vendor__AddressI__0F2D40CE">
+          <End Type="DBModel.Address" Role="Address" Multiplicity="0..1" />
+          <End Type="DBModel.Vendor" Role="Vendor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Address">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Vendor">
+              <PropertyRef Name="AddressID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Assemblin__Regio__3CF40B7E">
+          <End Type="DBModel.Region" Role="Region" Multiplicity="0..1" />
+          <End Type="DBModel.Assembling" Role="Assembling" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Region">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Assembling">
+              <PropertyRef Name="RegionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__City__CountryID__0880433F">
+          <End Type="DBModel.Country" Role="Country" Multiplicity="0..1" />
+          <End Type="DBModel.City" Role="City" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="City">
+              <PropertyRef Name="CountryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Client__ClientTy__1209AD79">
+          <End Type="DBModel.ClientType" Role="ClientType" Multiplicity="0..1" />
+          <End Type="DBModel.Client" Role="Client" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ClientType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Client">
+              <PropertyRef Name="ClientTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Order__ClientID__1B9317B3">
+          <End Type="DBModel.Client" Role="Client" Multiplicity="0..1" />
+          <End Type="DBModel.Order" Role="Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="ClientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Coverage__Region__3FD07829">
+          <End Type="DBModel.Region" Role="Region" Multiplicity="0..1" />
+          <End Type="DBModel.Coverage" Role="Coverage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Region">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Coverage">
+              <PropertyRef Name="RegionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Detail__RegionID__318258D2">
+          <End Type="DBModel.Region" Role="Region" Multiplicity="0..1" />
+          <End Type="DBModel.Detail" Role="Detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Region">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Detail">
+              <PropertyRef Name="RegionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__QualityCo__Detai__382F5661">
+          <End Type="DBModel.Detail" Role="Detail" Multiplicity="0..1" />
+          <End Type="DBModel.QualityControl" Role="QualityControl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Detail">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="QualityControl">
+              <PropertyRef Name="DetailID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__WorkshopE__Equip__2704CA5F">
+          <End Type="DBModel.Equipment" Role="Equipment" Multiplicity="0..1" />
+          <End Type="DBModel.WorkshopEquipment" Role="WorkshopEquipment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Equipment">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="WorkshopEquipment">
+              <PropertyRef Name="EquipmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Item__RegionID__345EC57D">
+          <End Type="DBModel.Region" Role="Region" Multiplicity="0..1" />
+          <End Type="DBModel.Item" Role="Item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Region">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Item">
+              <PropertyRef Name="RegionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__QualityCo__ItemI__39237A9A">
+          <End Type="DBModel.Item" Role="Item" Multiplicity="0..1" />
+          <End Type="DBModel.QualityControl" Role="QualityControl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Item">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="QualityControl">
+              <PropertyRef Name="ItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Order__State__1A9EF37A">
+          <End Type="DBModel.OrderState" Role="OrderState" Multiplicity="0..1" />
+          <End Type="DBModel.Order" Role="Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrderState">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="State" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__QualityCo__Produ__3A179ED3">
+          <End Type="DBModel.Product" Role="Product" Multiplicity="0..1" />
+          <End Type="DBModel.QualityControl" Role="QualityControl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="QualityControl">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Realizati__Produ__2057CCD0">
+          <End Type="DBModel.ProductType" Role="ProductType" Multiplicity="1" />
+          <End Type="DBModel.Realization" Role="Realization" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Realization">
+              <PropertyRef Name="ProductTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__QualityCo__Regio__373B3228">
+          <End Type="DBModel.Region" Role="Region" Multiplicity="0..1" />
+          <End Type="DBModel.QualityControl" Role="QualityControl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Region">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="QualityControl">
+              <PropertyRef Name="RegionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RawMateri__TypeR__16CE6296">
+          <End Type="DBModel.TypeRawMaterial" Role="TypeRawMaterial" Multiplicity="0..1" />
+          <End Type="DBModel.RawMaterial" Role="RawMaterial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeRawMaterial">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="RawMaterial">
+              <PropertyRef Name="TypeRawMaterialID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RawMateri__UnitO__17C286CF">
+          <End Type="DBModel.UnitOfMeasurement" Role="UnitOfMeasurement" Multiplicity="1" />
+          <End Type="DBModel.RawMaterial" Role="RawMaterial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UnitOfMeasurement">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="RawMaterial">
+              <PropertyRef Name="UnitOfMeasurementID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Drying__RegionID__41B8C09B">
+          <End Type="DBModel.Region" Role="Region" Multiplicity="0..1" />
+          <End Type="DBModel.Drying" Role="Drying" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Region">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Drying">
+              <PropertyRef Name="RegionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Region__TypeOfWo__2CBDA3B5">
+          <End Type="DBModel.RegionTypeOfWork" Role="RegionTypeOfWork" Multiplicity="0..1" />
+          <End Type="DBModel.Region" Role="Region" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RegionTypeOfWork">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Region">
+              <PropertyRef Name="TypeOfWork" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Region__Workshop__2BC97F7C">
+          <End Type="DBModel.Workshop" Role="Workshop" Multiplicity="0..1" />
+          <End Type="DBModel.Region" Role="Region" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Workshop">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Region">
+              <PropertyRef Name="WorkshopID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Staff_Workshop">
+          <End Type="DBModel.Workshop" Role="Workshop" Multiplicity="0..1" />
+          <End Type="DBModel.Staff" Role="Staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Workshop">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Staff">
+              <PropertyRef Name="WorkshopID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__WorkshopE__Works__2610A626">
+          <End Type="DBModel.Workshop" Role="Workshop" Multiplicity="0..1" />
+          <End Type="DBModel.WorkshopEquipment" Role="WorkshopEquipment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Workshop">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="WorkshopEquipment">
+              <PropertyRef Name="WorkshopID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -246,6 +1582,7 @@
           <EntitySetMapping Name="Staff">
             <EntityTypeMapping TypeName="DBModel.Staff">
               <MappingFragment StoreEntitySet="Staff">
+                <ScalarProperty Name="WorkshopID" ColumnName="WorkshopID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
@@ -309,6 +1646,257 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="Хранилище DBModel.sp_renamediagram" />
           <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="Хранилище DBModel.sp_upgraddiagrams" />
+          <EntitySetMapping Name="Address">
+            <EntityTypeMapping TypeName="DBModel.Address">
+              <MappingFragment StoreEntitySet="Address">
+                <ScalarProperty Name="HouseNumber" ColumnName="HouseNumber" />
+                <ScalarProperty Name="Street" ColumnName="Street" />
+                <ScalarProperty Name="CityID" ColumnName="CityID" />
+                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Assembling">
+            <EntityTypeMapping TypeName="DBModel.Assembling">
+              <MappingFragment StoreEntitySet="Assembling">
+                <ScalarProperty Name="AccessoriesCount" ColumnName="AccessoriesCount" />
+                <ScalarProperty Name="FastenerCount" ColumnName="FastenerCount" />
+                <ScalarProperty Name="AccessoriesName" ColumnName="AccessoriesName" />
+                <ScalarProperty Name="FastenerName" ColumnName="FastenerName" />
+                <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+                <ScalarProperty Name="RegionID" ColumnName="RegionID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="City">
+            <EntityTypeMapping TypeName="DBModel.City">
+              <MappingFragment StoreEntitySet="City">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Client">
+            <EntityTypeMapping TypeName="DBModel.Client">
+              <MappingFragment StoreEntitySet="Client">
+                <ScalarProperty Name="ClientTypeID" ColumnName="ClientTypeID" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ClientType">
+            <EntityTypeMapping TypeName="DBModel.ClientType">
+              <MappingFragment StoreEntitySet="ClientType">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Country">
+            <EntityTypeMapping TypeName="DBModel.Country">
+              <MappingFragment StoreEntitySet="Country">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Coverage">
+            <EntityTypeMapping TypeName="DBModel.Coverage">
+              <MappingFragment StoreEntitySet="Coverage">
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="Size" ColumnName="Size" />
+                <ScalarProperty Name="RegionID" ColumnName="RegionID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Detail">
+            <EntityTypeMapping TypeName="DBModel.Detail">
+              <MappingFragment StoreEntitySet="Detail">
+                <ScalarProperty Name="Size" ColumnName="Size" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="RegionID" ColumnName="RegionID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Equipment">
+            <EntityTypeMapping TypeName="DBModel.Equipment">
+              <MappingFragment StoreEntitySet="Equipment">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Item">
+            <EntityTypeMapping TypeName="DBModel.Item">
+              <MappingFragment StoreEntitySet="Item">
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="Size" ColumnName="Size" />
+                <ScalarProperty Name="RegionID" ColumnName="RegionID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Order">
+            <EntityTypeMapping TypeName="DBModel.Order">
+              <MappingFragment StoreEntitySet="Order">
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderState">
+            <EntityTypeMapping TypeName="DBModel.OrderState">
+              <MappingFragment StoreEntitySet="OrderState">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Product">
+            <EntityTypeMapping TypeName="DBModel.Product">
+              <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="Guarantee" ColumnName="Guarantee" />
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+                <ScalarProperty Name="ReleaseNumber" ColumnName="ReleaseNumber" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductType">
+            <EntityTypeMapping TypeName="DBModel.ProductType">
+              <MappingFragment StoreEntitySet="ProductType">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QualityControl">
+            <EntityTypeMapping TypeName="DBModel.QualityControl">
+              <MappingFragment StoreEntitySet="QualityControl">
+                <ScalarProperty Name="GOST" ColumnName="GOST" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+                <ScalarProperty Name="DetailID" ColumnName="DetailID" />
+                <ScalarProperty Name="RegionID" ColumnName="RegionID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RawMaterial">
+            <EntityTypeMapping TypeName="DBModel.RawMaterial">
+              <MappingFragment StoreEntitySet="RawMaterial">
+                <ScalarProperty Name="UnitCost" ColumnName="UnitCost" />
+                <ScalarProperty Name="UnitOfMeasurementID" ColumnName="UnitOfMeasurementID" />
+                <ScalarProperty Name="Guarantee" ColumnName="Guarantee" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="TypeRawMaterialID" ColumnName="TypeRawMaterialID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Realization">
+            <EntityTypeMapping TypeName="DBModel.Realization">
+              <MappingFragment StoreEntitySet="Realization">
+                <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+                <ScalarProperty Name="ReleaseNumber" ColumnName="ReleaseNumber" />
+                <ScalarProperty Name="ProductTypeID" ColumnName="ProductTypeID" />
+                <ScalarProperty Name="RealizationDate" ColumnName="RealizationDate" />
+                <ScalarProperty Name="Volume" ColumnName="Volume" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Region">
+            <EntityTypeMapping TypeName="DBModel.Region">
+              <MappingFragment StoreEntitySet="Region">
+                <ScalarProperty Name="TypeOfWork" ColumnName="TypeOfWork" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="WorkshopID" ColumnName="WorkshopID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RegionTypeOfWork">
+            <EntityTypeMapping TypeName="DBModel.RegionTypeOfWork">
+              <MappingFragment StoreEntitySet="RegionTypeOfWork">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TypeRawMaterial">
+            <EntityTypeMapping TypeName="DBModel.TypeRawMaterial">
+              <MappingFragment StoreEntitySet="TypeRawMaterial">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UnitOfMeasurement">
+            <EntityTypeMapping TypeName="DBModel.UnitOfMeasurement">
+              <MappingFragment StoreEntitySet="UnitOfMeasurement">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vendor">
+            <EntityTypeMapping TypeName="DBModel.Vendor">
+              <MappingFragment StoreEntitySet="Vendor">
+                <ScalarProperty Name="AddressID" ColumnName="AddressID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="DeliveryName" ColumnName="DeliveryName" />
+                <ScalarProperty Name="DeliveryDate" ColumnName="DeliveryDate" />
+                <ScalarProperty Name="ScopeOfDelivery" ColumnName="ScopeOfDelivery" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Workshop">
+            <EntityTypeMapping TypeName="DBModel.Workshop">
+              <MappingFragment StoreEntitySet="Workshop">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Drying">
+            <EntityTypeMapping TypeName="DBModel.Drying">
+              <MappingFragment StoreEntitySet="Drying">
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="Size" ColumnName="Size" />
+                <ScalarProperty Name="RegionID" ColumnName="RegionID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WorkshopEquipment">
+            <EntityTypeMapping TypeName="DBModel.WorkshopEquipment">
+              <MappingFragment StoreEntitySet="WorkshopEquipment">
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="EquipmentID" ColumnName="EquipmentID" />
+                <ScalarProperty Name="WorkshopID" ColumnName="WorkshopID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

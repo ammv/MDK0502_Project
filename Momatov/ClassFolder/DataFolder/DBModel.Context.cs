@@ -31,6 +31,31 @@ namespace Momatov.ClassFolder.DataFolder
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<User> User { get; set; }
         public virtual DbSet<UserRole> UserRole { get; set; }
+        public virtual DbSet<Address> Address { get; set; }
+        public virtual DbSet<Assembling> Assembling { get; set; }
+        public virtual DbSet<City> City { get; set; }
+        public virtual DbSet<Client> Client { get; set; }
+        public virtual DbSet<ClientType> ClientType { get; set; }
+        public virtual DbSet<Country> Country { get; set; }
+        public virtual DbSet<Coverage> Coverage { get; set; }
+        public virtual DbSet<Detail> Detail { get; set; }
+        public virtual DbSet<Equipment> Equipment { get; set; }
+        public virtual DbSet<Item> Item { get; set; }
+        public virtual DbSet<Order> Order { get; set; }
+        public virtual DbSet<OrderState> OrderState { get; set; }
+        public virtual DbSet<Product> Product { get; set; }
+        public virtual DbSet<ProductType> ProductType { get; set; }
+        public virtual DbSet<QualityControl> QualityControl { get; set; }
+        public virtual DbSet<RawMaterial> RawMaterial { get; set; }
+        public virtual DbSet<Realization> Realization { get; set; }
+        public virtual DbSet<Region> Region { get; set; }
+        public virtual DbSet<RegionTypeOfWork> RegionTypeOfWork { get; set; }
+        public virtual DbSet<TypeRawMaterial> TypeRawMaterial { get; set; }
+        public virtual DbSet<UnitOfMeasurement> UnitOfMeasurement { get; set; }
+        public virtual DbSet<Vendor> Vendor { get; set; }
+        public virtual DbSet<Workshop> Workshop { get; set; }
+        public virtual DbSet<Drying> Drying { get; set; }
+        public virtual DbSet<WorkshopEquipment> WorkshopEquipment { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {
