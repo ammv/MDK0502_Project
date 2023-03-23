@@ -25,6 +25,8 @@ namespace Momatov.PageFolder.ManagerPageFolder
     {
         Staff staff = new Staff();
         User user = new User();
+        int? workshopID = null;
+
         public AddStaffPage()
         {
             InitializeComponent();
@@ -37,6 +39,15 @@ namespace Momatov.PageFolder.ManagerPageFolder
             {
                 if(ValidateStaff() && ValidateUser())
                 {
+                    if(IsWorker())
+                    {
+                        SetWorkerWorkshop();
+                            if(workshopID == 0)
+                            {
+                                MBClass.Error("Вы не выбрали цех рабочего!");
+                                return;
+                            }
+                    }
                     AddUser();
                     AddStaff();
                     await DBEntities.GetContext().SaveChangesAsync();
@@ -47,6 +58,17 @@ namespace Momatov.PageFolder.ManagerPageFolder
             {
                 MBClass.Error(ex);
             }
+        }
+
+        private bool IsWorker()
+        {
+            return (RoleComboBox.SelectedItem as UserRole).Name == "worker";
+            
+        }
+
+        private void SetWorkerWorkshop()
+        {
+            new WindowFolder.ManagerWindowFolder.ChoiceWorkshopForWorker((int w) => workshopID = w).ShowDialog();
         }
 
         private void AddUser()
@@ -87,6 +109,7 @@ namespace Momatov.PageFolder.ManagerPageFolder
             staff.MiddleName = MiddleNameTextBox.Text;
             staff.FirstName = FirstNameTextBox.Text;
             staff.Phone = PhoneTextBox.Text;
+            staff.WorkshopID = workshopID;
             DBEntities.GetContext().Staff.Add(staff);
         }
 

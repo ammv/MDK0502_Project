@@ -38,8 +38,10 @@
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="70"/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
+                            <ColumnDefinition Width="5"/>
+                            <ColumnDefinition Width="250"/>
+                            <ColumnDefinition Width="5"/>
+                            <ColumnDefinition Width="250"/>
                         </Grid.ColumnDefinitions>
 
                         <Grid.RowDefinitions>
@@ -49,43 +51,54 @@
                             <RowDefinition/>
                         </Grid.RowDefinitions>
 
-                        <Image Grid.RowSpan="4"
-                               Source="{Binding Photo, Converter={StaticResource stringToBitmapImageConverter}}"/>
-                        <TextBlock Grid.Column="1">
+                        <Ellipse Height="70" Width="70"
+                             
+                             Grid.RowSpan="4"
+                             Stroke="{DynamicResource BorderColor}"
+                             StrokeThickness="2">      
+                            <Ellipse.Fill>
+                                <ImageBrush x:Name="StaffImage" ImageSource="{Binding Photo, Converter={StaticResource stringToBitmapImageConverter}}" Stretch="UniformToFill"
+                            />
+                            </Ellipse.Fill>
+                        </Ellipse>
+
+                        <!--<Image Grid.RowSpan="4"
+                               Source="{Binding Photo, Converter={StaticResource stringToBitmapImageConverter}}"/>-->
+                        <TextBlock Grid.Column="2">
                             <Run Text="Фамилия: "
                                  FontWeight="Bold"/>
                             <Run Text="{Binding LastName}"/>
                         </TextBlock>
 
                         <TextBlock Grid.Row="1"
-                                   Grid.Column="1">
+                                   Grid.Column="2">
                             <Run Text="Имя: "
                                  FontWeight="Bold"/>
                             <Run Text="{Binding FirstName}"/>
                         </TextBlock>
 
                         <TextBlock Grid.Row="2"
-                                   Grid.Column="1">
+                                   Grid.Column="2">
                             <Run Text="Отчество: "
                                  FontWeight="Bold"/>
                             <Run Text="{Binding MiddleName}"/>
                         </TextBlock>
 
                         <TextBlock Grid.Row="3"
-                                   Grid.Column="1"
+                                   Grid.Column="2"
                                    >
                             <Run Text="Номер телефона: "
                                  FontWeight="Bold"/>
                             <Run Text="{Binding Phone}"/>
                         </TextBlock>
 
-                        <TextBlock Grid.Column="2">
+                        <TextBlock Grid.Column="4">
                             <Run Text="Логин: "
                                  FontWeight="Bold"/>
                             <Run Text="{Binding User.Login}"/>
                         </TextBlock>
 
-                        <TextBlock Grid.Column="2"
+                        <TextBlock Grid.Column="4"
                                    Grid.Row="1">
                             <Run Text="Пароль: "
                                  FontWeight="Bold"/>
@@ -93,7 +106,7 @@
                         </TextBlock>
 
                         <TextBlock Grid.Row="2"
-                                   Grid.Column="2">
+                                   Grid.Column="4">
                             <Run Text="Роль: "
                                  FontWeight="Bold"/>
                             <Run Text="{Binding User.UserRole.Name}"/>

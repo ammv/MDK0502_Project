@@ -23,6 +23,7 @@ namespace Momatov.PageFolder.ManagerPageFolder
     /// </summary>
     public partial class ListStaffPage : Page
     {
+        public static BitmapImage noStaffImage = new BitmapImage(new Uri("pack://application:,,,/SourceFolder/no-image.png"));
         public ListStaffPage()
         {
             InitializeComponent();
@@ -92,7 +93,7 @@ namespace Momatov.PageFolder.ManagerPageFolder
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             string s = (string)value;
-            if(string.IsNullOrEmpty(s)) return null;
+            if(string.IsNullOrEmpty(s)) return ListStaffPage.noStaffImage;
             return ImageClass.ConvertBase64StringToBitmapImage((string)value);
         }
 

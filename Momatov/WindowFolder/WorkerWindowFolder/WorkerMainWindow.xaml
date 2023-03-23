@@ -1,0 +1,73 @@
+﻿<Window x:Class="Momatov.WindowFolder.WorkerWindowFolder.WorkerMainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Momatov.WindowFolder.WorkerWindowFolder"
+        mc:Ignorable="d"
+        Height="750" Width="1200"
+        MaxHeight="750" MaxWidth="1200"
+        MinHeight="750" MinWidth="1200"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        Background="Transparent"
+        AllowsTransparency="True"
+        ResizeMode="CanResizeWithGrip">
+    <Border Style="{DynamicResource BorderBackground}"
+            MouseLeftButtonDown="Border_MouseLeftButtonDown">
+        <Grid Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Image x:Name="CloseImage"
+                   Margin="20"
+                   Width="15" Height="15"
+                   HorizontalAlignment="Right"
+                   Source="/Momatov;component/SourceFolder/Close.png"
+                   MouseLeftButtonDown="CloseImage_MouseLeftButtonDown"/>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="300"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <!--For logo-->
+                        <RowDefinition Height="100"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Image Source="pack://application:,,,/SourceFolder/logo.png"
+                           Style="{DynamicResource LogoSmall}"/>
+                    <StackPanel Grid.Row="1">
+                        
+                    </StackPanel>
+                    <Button x:Name="BackButton"
+                                Style="{DynamicResource BodyButton}"
+                                Content="Назад"
+                                Grid.Row="1"
+                                VerticalAlignment="Bottom"
+                                Margin="10"
+                                Height="50"/>
+
+                </Grid>
+                <Grid Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="70"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Label Style="{DynamicResource HeaderLabel}"
+                           Content="{Binding ElementName=MainFrame,
+                        Path=Content.Title}"/>
+                    <Frame x:Name="MainFrame"
+                           Grid.Row="1"
+                           NavigationUIVisibility="Hidden">
+
+                    </Frame>
+
+
+                </Grid>
+            </Grid>
+        </Grid>
+    </Border>
+</Window>

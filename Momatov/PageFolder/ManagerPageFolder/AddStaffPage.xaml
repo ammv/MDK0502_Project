@@ -99,7 +99,8 @@
             SelectedValuePath="ID"
             SelectedValue="{Binding RoleID}"
             Grid.Column="4"
-            Grid.Row="5"/>
+            Grid.Row="5"
+            Style="{DynamicResource RoundedComboBox}"/>
 
         <!--<Label Content="Фото"
                Style="{DynamicResource HeaderLabel}"
@@ -109,7 +110,7 @@
         <Ellipse Height="70" Width="70"
                  Grid.Column="3"
                  Grid.Row="7"
-                 Stroke="{DynamicResource BorderColor}"
+                 Stroke="{DynamicResource BorderColorBrush}"
                  StrokeThickness="2"
                  >
             <Ellipse.Fill>
