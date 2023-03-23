@@ -189,15 +189,15 @@
                                     <Grid>
                                         <Rectangle x:Name="Background" Stroke="{StaticResource BorderColorBrush}" RadiusX="3"
                                                            RadiusY="3" IsHitTestVisible="false" />
-                                        <Rectangle x:Name="Background_over" Stroke="#FFABACAD" RadiusX="3"
+                                        <Rectangle x:Name="Background_over" Stroke="{StaticResource BorderColorBrush}" RadiusX="3"
                                                            RadiusY="3" Opacity="0" IsHitTestVisible="False" />
-                                        <Rectangle x:Name="Background_press" Stroke="#FFABABAB" RadiusX="3"
+                                        <Rectangle x:Name="Background_press" Stroke="{StaticResource BorderColorBrush}" RadiusX="3"
                                                            RadiusY="3" Opacity="0" IsHitTestVisible="False" />
                                         <Border x:Name="BtnOver" Width="{TemplateBinding ActualWidth}"
-                                                        BorderBrush="#FFABABAB" BorderThickness="1" CornerRadius="{StaticResource CornerRadius}"
+                                                        BorderBrush="{StaticResource BorderColorBrush}" BorderThickness="1" CornerRadius="{StaticResource CornerRadius}"
                                                         Opacity="0" HorizontalAlignment="Right" />
                                         <Border x:Name="BtnPress" Width="{TemplateBinding ActualWidth}"
-                                                        BorderBrush="#FF595A5B" BorderThickness="1" CornerRadius="{StaticResource CornerRadius}"
+                                                        BorderBrush="{StaticResource BorderColorBrush}" BorderThickness="1" CornerRadius="{StaticResource CornerRadius}"
                                                         Opacity="0" HorizontalAlignment="Right">
                                             <Border.Background>
                                                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -237,8 +237,8 @@
                                                       HorizontalAlignment="Right" Stretch="Uniform">
                                             <Path.Fill>
                                                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                                    <GradientStop Color="red" Offset="0" />
-                                                    <GradientStop Color="#FF000000" Offset="1" />
+                                                    <GradientStop Color="{StaticResource BorderColor}" Offset="0" />
+                                                    <GradientStop Color="{StaticResource BorderColor}" Offset="1" />
                                                 </LinearGradientBrush>
                                             </Path.Fill>
                                         </Path>
@@ -296,7 +296,7 @@
                         </TextBox>
                         <Rectangle x:Name="DisabledVisualElement" Fill="#A5FFFFFF" RadiusX="4" RadiusY="4"
                                            IsHitTestVisible="false" Visibility="Collapsed" />
-                        <Rectangle x:Name="FocusVisualElement" Margin="-1" Stroke="#FFCECFD0"
+                        <Rectangle x:Name="FocusVisualElement" Margin="-1" Stroke="{StaticResource BorderColorBrush}"
                                            StrokeThickness="1" RadiusX="4" RadiusY="4" IsHitTestVisible="false"
                                            Opacity="0" />
                         <Popup IsOpen="{TemplateBinding IsDropDownOpen}" Placement="Bottom" x:Name="Popup"

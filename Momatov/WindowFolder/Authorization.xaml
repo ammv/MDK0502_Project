@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Авторизация" Height="375" Width="500"
         WindowStartupLocation="CenterScreen"
-        Background="{DynamicResource BackgroundColor}">
+        Background="{DynamicResource BackgroundColorBrush}">
     <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="100"/>
