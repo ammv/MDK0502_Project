@@ -45,6 +45,11 @@ namespace Momatov.ClassFolder
                     {
                         TextBlock textBlock = listDataGrid.Columns[i].GetCellContent(listDataGrid.Items[j]) as TextBlock;
                         myRange = (Excel.Range)worksheet.Cells[j+2, i+1];
+                        if(textBlock != null)
+                        {
+                            myRange.Value = textBlock.Text;
+                        }
+                        
                     }
 
                 }

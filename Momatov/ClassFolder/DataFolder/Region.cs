@@ -23,6 +23,7 @@ namespace Momatov.ClassFolder.DataFolder
             this.Item = new HashSet<Item>();
             this.QualityControl = new HashSet<QualityControl>();
             this.Drying = new HashSet<Drying>();
+            this.Staff = new HashSet<Staff>();
         }
     
         public int ID { get; set; }
@@ -44,5 +45,7 @@ namespace Momatov.ClassFolder.DataFolder
         public virtual ICollection<Drying> Drying { get; set; }
         public virtual RegionTypeOfWork RegionTypeOfWork { get; set; }
         public virtual Workshop Workshop { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Staff> Staff { get; set; }
     }
 }

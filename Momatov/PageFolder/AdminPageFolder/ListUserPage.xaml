@@ -48,7 +48,7 @@
                                     Width="*"/>
                 <DataGridTextColumn Header="Пароль" Binding="{Binding Password}"
                                     Width="*"/>
-                <DataGridTextColumn Header="Роль" Binding="{Binding UserRoles.Name}"
+                <DataGridTextColumn Header="Роль" Binding="{Binding UserRole.Name}"
                                     Width="*"/>
             </DataGrid.Columns>
         </DataGrid>

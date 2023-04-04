@@ -204,8 +204,8 @@
     <Compile Include="PageFolder\ManagerPageFolder\ListStaffPage.xaml.cs">
       <DependentUpon>ListStaffPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="WindowFolder\ManagerWindowFolder\ChoiceWorkshopForWorker.xaml.cs">
-      <DependentUpon>ChoiceWorkshopForWorker.xaml</DependentUpon>
+    <Compile Include="WindowFolder\ManagerWindowFolder\ChoiceRegionForWorker.xaml.cs">
+      <DependentUpon>ChoiceRegionForWorker.xaml</DependentUpon>
     </Compile>
     <Compile Include="WindowFolder\ManagerWindowFolder\ManagerMainWindow.xaml.cs">
       <DependentUpon>ManagerMainWindow.xaml</DependentUpon>
@@ -253,6 +253,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="SourceFolder\no-image.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Content Include="ClassFolder\DataFolder\DBModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>DBModel.edmx</DependentUpon>
@@ -263,9 +266,6 @@
       <DependentUpon>DBModel.edmx</DependentUpon>
       <LastGenOutput>DBModel.cs</LastGenOutput>
     </Content>
-    <Resource Include="SourceFolder\no-image.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
     <Content Include="SourceFolder\logo.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -303,7 +303,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="WindowFolder\ManagerWindowFolder\ChoiceWorkshopForWorker.xaml">
+    <Page Include="WindowFolder\ManagerWindowFolder\ChoiceRegionForWorker.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -1,19 +1,20 @@
-﻿<Window x:Class="Momatov.WindowFolder.ManagerWindowFolder.ChoiceWorkshopForWorker"
+﻿<Window x:Class="Momatov.WindowFolder.ManagerWindowFolder.ChoiceRegionForWorker"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Momatov.WindowFolder.ManagerWindowFolder"
         mc:Ignorable="d"
-        Height="225" Width="400"
-        MaxHeight="225" MaxWidth="400"
-        MinHeight="225" MinWidth="400"
+        Height="335" Width="400"
+        MaxHeight="335" MaxWidth="400"
+        MinHeight="335" MinWidth="400"
         WindowStartupLocation="CenterScreen"
         WindowStyle="None"
         Background="Transparent"
         AllowsTransparency="True"
         ResizeMode="CanResizeWithGrip">
     <Border Style="{DynamicResource BorderBackground}"
+            
             >
         <Grid Margin="10">
             <Grid.RowDefinitions>
@@ -33,6 +34,8 @@
                 <Grid.RowDefinitions>
                     <RowDefinition/>
                     <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
                 </Grid.RowDefinitions>
                 
                 <ComboBox 
@@ -41,8 +44,21 @@
                     SelectedValuePath="ID"
                     SelectedValue="{Binding RoleID}"
                     Grid.Row="0" 
+                    
+                    Style="{DynamicResource RoundedComboBox}" SelectionChanged="WorkshopComboBox_SelectionChanged"/>
+
+                <Label Content="Выберите участок рабочего" Style="{DynamicResource HeaderLabel}" Grid.Row="1"/>
+
+                <ComboBox 
+                    x:Name="RegionComboBox"
+                    DisplayMemberPath="Name"
+                    SelectedValuePath="ID"
+                    SelectedValue="{Binding Name}"
+                    Grid.Row="2" 
                     Style="{DynamicResource RoundedComboBox}"/>
-                <Button Style="{DynamicResource BodyButton}" Content="Готово" Grid.Row="2"
+
+
+                <Button Style="{DynamicResource BodyButton}" Content="Готово" Grid.Row="4"
                         Click="Button_Click"/>
             </Grid>
             

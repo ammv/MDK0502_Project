@@ -54,6 +54,7 @@
                Grid.Row="5"/>
 
         <ComboBox 
+            Style="{DynamicResource RoundedComboBox}"
             x:Name="RoleComboBox"
             DisplayMemberPath="Name"
             SelectedValuePath="ID"

@@ -18,7 +18,6 @@ namespace Momatov.ClassFolder.DataFolder
         public Workshop()
         {
             this.Region = new HashSet<Region>();
-            this.Staff = new HashSet<Staff>();
             this.WorkshopEquipment = new HashSet<WorkshopEquipment>();
         }
     
@@ -27,8 +26,6 @@ namespace Momatov.ClassFolder.DataFolder
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Region> Region { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Staff> Staff { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<WorkshopEquipment> WorkshopEquipment { get; set; }
     }

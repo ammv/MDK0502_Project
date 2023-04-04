@@ -42,6 +42,8 @@
                             <ColumnDefinition Width="250"/>
                             <ColumnDefinition Width="5"/>
                             <ColumnDefinition Width="250"/>
+                            <ColumnDefinition Width="5"/>
+                            <ColumnDefinition Width="250"/>
                         </Grid.ColumnDefinitions>
 
                         <Grid.RowDefinitions>
@@ -54,7 +56,7 @@
                         <Ellipse Height="70" Width="70"
                              
                              Grid.RowSpan="4"
-                             Stroke="{DynamicResource BorderColor}"
+                             Stroke="{DynamicResource BorderColorBrush}"
                              StrokeThickness="2">      
                             <Ellipse.Fill>
                                 <ImageBrush x:Name="StaffImage" ImageSource="{Binding Photo, Converter={StaticResource stringToBitmapImageConverter}}" Stretch="UniformToFill"
@@ -111,6 +113,28 @@
                                  FontWeight="Bold"/>
                             <Run Text="{Binding User.UserRole.Name}"/>
                         </TextBlock>
+
+                        <TextBlock Grid.Row="0"
+                                   Grid.Column="6">
+                            <Run Text="Цех: "
+                                 FontWeight="Bold"/>
+                            <Run Text="{Binding Region.Workshop.Name}"/>
+                        </TextBlock>
+
+                        <TextBlock Grid.Row="1"
+                                   Grid.Column="6">
+                            <Run Text="Участок: "
+                                 FontWeight="Bold"/>
+                            <Run Text="{Binding Region.Name}"/>
+                        </TextBlock>
+
+                        <TextBlock Grid.Row="2"
+                                   Grid.Column="6">
+                            <Run Text="Тип работы: "
+                                 FontWeight="Bold"/>
+                            <Run Text="{Binding Region.TypeOfWork.Name}"/>
+                        </TextBlock>
+                        
                     </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>

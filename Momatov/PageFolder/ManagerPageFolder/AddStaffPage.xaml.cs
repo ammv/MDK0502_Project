@@ -25,7 +25,7 @@ namespace Momatov.PageFolder.ManagerPageFolder
     {
         Staff staff = new Staff();
         User user = new User();
-        int? workshopID = null;
+        int? regionID = null;
 
         public AddStaffPage()
         {
@@ -41,12 +41,19 @@ namespace Momatov.PageFolder.ManagerPageFolder
                 {
                     if(IsWorker())
                     {
-                        SetWorkerWorkshop();
-                            if(workshopID == 0)
-                            {
-                                MBClass.Error("Вы не выбрали цех рабочего!");
-                                return;
-                            }
+                        Opacity = 0;
+                        GetWorkerRegion();
+                        Opacity = 1;
+                        if (regionID == null || regionID == 0)
+                        {
+                            MBClass.Error("Вы не выбрали цех рабочего!");
+                            return;
+                        }
+                        else
+                        {
+                            staff.RegionID = regionID;
+                            //SetWorkerRegion();
+                        }
                     }
                     AddUser();
                     AddStaff();
@@ -60,15 +67,22 @@ namespace Momatov.PageFolder.ManagerPageFolder
             }
         }
 
+        private void SetWorkerRegion()
+        {
+            Region region = DBEntities.GetContext().Region.First(x => x.ID == regionID);
+            staff.Region = region;
+        }
+
         private bool IsWorker()
         {
             return (RoleComboBox.SelectedItem as UserRole).Name == "worker";
             
         }
 
-        private void SetWorkerWorkshop()
+        private void GetWorkerRegion()
         {
-            new WindowFolder.ManagerWindowFolder.ChoiceWorkshopForWorker((int w) => workshopID = w).ShowDialog();
+            
+            new WindowFolder.ManagerWindowFolder.ChoiceRegionForWorker((int w) => regionID = w).ShowDialog();
         }
 
         private void AddUser()
@@ -109,7 +123,7 @@ namespace Momatov.PageFolder.ManagerPageFolder
             staff.MiddleName = MiddleNameTextBox.Text;
             staff.FirstName = FirstNameTextBox.Text;
             staff.Phone = PhoneTextBox.Text;
-            staff.WorkshopID = workshopID;
+            //staff.Re = regionID;
             DBEntities.GetContext().Staff.Add(staff);
         }
 

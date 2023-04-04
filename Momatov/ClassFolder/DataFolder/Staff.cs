@@ -21,9 +21,9 @@ namespace Momatov.ClassFolder.DataFolder
         public string Phone { get; set; }
         public int UserID { get; set; }
         public string Photo { get; set; }
-        public Nullable<int> WorkshopID { get; set; }
+        public Nullable<int> RegionID { get; set; }
     
+        public virtual Region Region { get; set; }
         public virtual User User { get; set; }
-        public virtual Workshop Workshop { get; set; }
     }
 }

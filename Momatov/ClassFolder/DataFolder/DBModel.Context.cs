@@ -27,10 +27,6 @@ namespace Momatov.ClassFolder.DataFolder
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Staff> Staff { get; set; }
-        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
-        public virtual DbSet<User> User { get; set; }
-        public virtual DbSet<UserRole> UserRole { get; set; }
         public virtual DbSet<Address> Address { get; set; }
         public virtual DbSet<Assembling> Assembling { get; set; }
         public virtual DbSet<City> City { get; set; }
@@ -50,8 +46,12 @@ namespace Momatov.ClassFolder.DataFolder
         public virtual DbSet<Realization> Realization { get; set; }
         public virtual DbSet<Region> Region { get; set; }
         public virtual DbSet<RegionTypeOfWork> RegionTypeOfWork { get; set; }
+        public virtual DbSet<Staff> Staff { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<TypeRawMaterial> TypeRawMaterial { get; set; }
         public virtual DbSet<UnitOfMeasurement> UnitOfMeasurement { get; set; }
+        public virtual DbSet<User> User { get; set; }
+        public virtual DbSet<UserRole> UserRole { get; set; }
         public virtual DbSet<Vendor> Vendor { get; set; }
         public virtual DbSet<Workshop> Workshop { get; set; }
         public virtual DbSet<Drying> Drying { get; set; }
